@@ -11,15 +11,16 @@ class StoryGame {
 	}
 
 	start(){
-		// this.loading(true);
 		if (this.s == null){
 			console.log("[error] Scene is not set.");
 			return;
 		}
 		this.prepare_screen();
-		// this.preload_all_img();
 
-		this.render(5001);
+		// GET params
+		var url = new URL(window.location.href);
+		var scene = url.searchParams.get("scene");
+		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 2001 : window.location.hash.substring(1, window.location.hash.length) : scene);
 	}
 
 	preload_all_img(){
@@ -69,6 +70,7 @@ class StoryGame {
 		$(this.screen).html("");
 
 		/* prepare background */
+		console.log(s.background)
 		if (s.background != undefined){
 			let background = s.background
 			this.render_background(background);
@@ -131,7 +133,6 @@ class StoryGame {
 	}
 
 	render_background(bg) {
-		// let background = s.background
 		if (bg.length == undefined || bg.length == 1) {
 			if (bg.transition != undefined){
 				this.screen.css({"transition": "background "+bg.transition+"s linear"});
