@@ -1,0 +1,139 @@
+@font-face {
+   font-family: Noto Sans CJK TC light;
+   src: url(fonts/NotoSansCJKtc-Light.otf);
+}
+
+
+body{
+	font-family: 'Noto Sans CJK TC light', sans-serif;
+	font-weight: lighter;
+	font-size: 14px;
+}
+a{
+	color: #bdccd4;
+}
+a:hover{
+	color: #254b5b;
+	text-decoration: none;
+}
+.btn{
+	border-radius: 0px;
+	color: #bdccd4;
+}
+.btn:hover{
+	background: #bdccd4;
+	color: #254b5b;
+}
+
+#wrapper{
+	width: 100vw;
+	height: 100vh;
+}
+
+#game{
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	/*background: url(../img/2/01.png);*/
+	background-size: 375px 667px;
+	width: 375px;
+	height: 667px;
+	margin-left: calc((100% - 375px )/2);
+	padding-left: 38px;
+	padding-right: 38px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.btn-wrapper{
+	position: absolute; 
+	/*top: calc(270px - 70px - 120px); /* 270 - story wrapper top 0 story wrapper height */
+	top: 260px; /* 270 - story wrapper top 0 story wrapper height */
+	white-space: nowrap;
+}
+
+.btn-wrapper .btn-default{
+    border: 1px solid #bdccd4;
+    width: 87pt;
+    font-size: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    transform: scale(0.8);
+    margin-left: -11px;
+}
+
+#btn-1{
+	position: absolute;
+	left: 0px;
+}
+
+#btn-2{
+	position: absolute;
+	left: 100px;
+}
+
+#btn-3{
+	position: absolute;
+	left: 200px;
+}
+
+.story-wrapper{
+	position: relative;
+	top: 70px;
+	color: #bdccd4;
+	font-size: 13.5px;
+	/*white-space: nowrap;*/
+}
+
+.line-wrapper{
+	position: relative;
+	top: 70px;
+	max-height: 240px;
+	overflow-y: scroll;
+	z-index: 10;
+	padding-top: 5px;
+	margin-top: -5px;
+}
+.line-wrapper::-webkit-scrollbar {
+	display: none;
+}
+
+.line-wrapper p{
+	margin-bottom: 10px;
+}
+
+.line-wrapper img{
+	max-width: 100px;
+}
+
+.line-read{
+    display: inline-block;
+	color: #bdccd4;
+	font-size: 10px;
+    transform: scale(0.8);
+    vertical-align: bottom;
+    margin-bottom: -3px;
+}
+
+.line-msg{
+	background: #fff;
+	color: #b3b3b3;
+	/*color: #4d4d4d;*/
+	border-radius: 17px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 9px;
+	padding-right: 9px;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+}
+
+.line-call{
+	color: #999;
+	/*color: #808080;*/
+	font-style: italic;
+}
