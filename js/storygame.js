@@ -1,4 +1,5 @@
 MAX_STORY_PARAGRAPH = 3
+LINE_SKIP_TIMEOUT = false;
 class StoryGame {
 	constructor(game, scene){
 		this.screen = $("#game");
@@ -6,6 +7,9 @@ class StoryGame {
 		this.self = this;
 		this.curr_scene;
 		this.story_section = 0;
+		this.prev_bg;
+		this.width;
+		this.height;
 		// this.backgrounds = {};
 		// this.raw_backgrounds = bgs;
 	}
@@ -15,6 +19,7 @@ class StoryGame {
 			console.log("[error] Scene is not set.");
 			return;
 		}
+		// this.preload_all_img();
 		this.prepare_screen();
 
 		// GET params
@@ -24,28 +29,36 @@ class StoryGame {
 	}
 
 	preload_all_img(){
-		let self = this;
-		let str_url = "";
-		for (var bg in this.raw_backgrounds) {
-			for (var raw_img in this.raw_backgrounds[bg]){
-				let img = new Image();
-				img.src = this.raw_backgrounds[bg][raw_img].url;
-				str_url = str_url + " url('" + img.src + "'')";
-				if(this.backgrounds[bg] != undefined){
-					let tmp_obj = [this.raw_backgrounds[bg][raw_img]];
-					tmp_obj.url = img.src;
-					this.backgrounds[bg].push(this.raw_backgrounds[bg][raw_img]);
-				}
-				else {
-					let tmp_obj = [this.raw_backgrounds[bg][raw_img]];
-					tmp_obj.url = img.src;
-					this.backgrounds[bg] = tmp_obj;
-				}
-			}
-		}
-		$("body:after").css("content", str_url);
-		console.log(str_url)
-		this.loading(false);
+		// $("body").css("content", 'url("./../img/5/01.png")');
+		// var bgs = [
+		// 	bg_bathroom, 
+		// 	bg_hospital_outside, 
+		// 	bg_hospital_in_on_lower, 
+		// 	bg_hospital_in_on_raise,
+		// 	bg_hospital_in_on_called, 
+		// 	bg_hospital_in_off_lower, 
+		// 	bg_hospital_in_off_raise,
+		// 	bg_hospital_in_off_called, 
+		// 	bg_hospital_in_doctor, 
+		// 	bg_hospital_out_discuss
+		// ];
+		// var self = this;
+		// var i = 0;
+		// var render_background = this.render_background;
+
+		// while (i < bgs.length) {
+		// 	let j = 0;
+		// 	while (j < bgs[i].length){
+		// 		// setTimeout(function(){
+		// 		// 	console.log(i, j)
+		// 		self.render_background(bgs[i][j]);
+		// 		// 	if (j == bg[i].length) {
+		// 		// 	}
+		// 		// }, 1000);
+		// 		j += 1;
+		// 	}
+		// 	i += 1;
+		// }
 	}
 
 	loading(flag) {
@@ -70,7 +83,10 @@ class StoryGame {
 		$(this.screen).html("");
 
 		/* prepare background */
-		console.log(s.background)
+		if (s.page_turn && this.story_section == 0) {
+			this.screen.append($("<div>", {id: "page-turner"}));
+			page_turn(this.prev_bg, this.width, this.height);
+		}
 		if (s.background != undefined){
 			let background = s.background
 			this.render_background(background);
@@ -96,7 +112,7 @@ class StoryGame {
 				this.render_line(s);
 			}
 		}
-		else if (s.image_story != undefined && s.image_story.length > 0){
+		if (s.image_story != undefined && s.image_story.length > 0){
 			if (s.auto_render != undefined){
 				this.render_image_story(s, {
 					timeout: s.auto_render.timeout,
@@ -134,6 +150,9 @@ class StoryGame {
 
 	render_background(bg) {
 		if (bg.length == undefined || bg.length == 1) {
+			if (bg.length == 1){
+				bg = bg[0];
+			}
 			if (bg.transition != undefined){
 				this.screen.css({"transition": "background "+bg.transition+"s linear"});
 			}
@@ -152,23 +171,27 @@ class StoryGame {
 			}
 			if (bg.right != undefined) {
 				$(this.screen).css("background-position-y", bg.right+"px");
-			}			
+			}
+			this.prev_bg = bg;
 		}
 		else if (bg.length > 1) {
 			this.background_shuffle(bg, 0, this.curr_scene);
 		}
 	}
 
-	background_shuffle(bg, index, curr_s) {
+	background_shuffle(bg, index, curr_s, end) {
 		var background_shuffle = this.background_shuffle;
 		var self = this;
 		this.render_background(bg[index])
-		setTimeout(function(){
-			index = (index + 1) % bg.length;
-			if (curr_s == self.curr_scene){
-				self.background_shuffle(bg, index, self.curr_scene);
-			}
-		}, Math.random()*10000%3000)
+		let timeout = (bg[index].timeout != undefined) ? bg[index].timeout * 1000 : Math.random()*10000%3000;
+		if (end != true){
+			setTimeout(function(){
+				index = (index + 1) % bg.length;
+				if (curr_s == self.curr_scene){
+						self.background_shuffle(bg, index, self.curr_scene, bg[index].end);
+				}
+			}, timeout)
+		}
 	}
 
 	render_story(s) {
@@ -232,8 +255,13 @@ class StoryGame {
 						if (j.img.length == 1){
 							j.img = [j.img];
 						}
-						for (let k of j.img){
-							row.append($("<img>", {class: "line-msg", src: k}));
+						if (Array.isArray(j.img)){
+							for (let k of j.img){
+								row.append($("<img>", {class: "line-msg", src: k}));
+							}
+						}
+						else {
+							row.append($("<img>", {class: "line-msg", src: j.img}));
 						}
 					}
 					line.append(row);
@@ -254,8 +282,13 @@ class StoryGame {
 						if (j.img.length == 1){
 							j.img = [j.img];
 						}
-						for (let k of j.img){
-							row.append($("<img>", {class: "line-msg", src: k}));
+						if (Array.isArray(j.img)){
+							for (let k of j.img){
+								row.append($("<img>", {class: "line-msg", src: k}));
+							}
+						}
+						else {
+							row.append($("<img>", {class: "line-msg", src: j.img}));
 						}
 					}
 					line.append(row);
@@ -269,8 +302,13 @@ class StoryGame {
 						if (j.img.length == 1){
 							j.img = [j.img];
 						}
-						for (let k of j.img){
-							row.append($("<img>", {class: "line-msg", src: k}));
+						if (Array.isArray(j.img)){
+							for (let k of j.img){
+								row.append($("<img>", {class: "line-msg", src: k}));
+							}
+						}
+						else {
+							row.append($("<img>", {class: "line-msg", src: j.img}));
 						}
 					}
 					line.append(row);
@@ -320,7 +358,7 @@ class StoryGame {
 						self.render_buttons(s);
 					}
 				}
-			}, timeout_count*1000);
+			}, (LINE_SKIP_TIMEOUT) ? 0 : timeout_count*1000);
 		});
 	}
 
@@ -420,4 +458,32 @@ class StoryGame {
 		}
 	}
 
+}
+
+function page_turn(prev_bg, width, height) {
+	var turner = $("#page-turner");
+	turner.append($("<div>", {id: "page-1", style: "background: white"}));
+	turner.append($("<div>", {id: "page-2 even", style: "background: white; display: none;"}));
+	turner.css({
+	    height: "100%",
+	    width: "calc(100% + 76px)",
+	    "margin-left": "-38px",
+	    "z-index": 1,
+	});
+	turner.turn({
+		acceleration: true,
+		display: 'single',
+		pages: 6,
+		elevation: 50,
+		gradients: !$.isTouch,
+		duration: 3000,
+	});
+	turner.bind("turned", function(){
+		// setTimeout(function(){
+			turner.remove();
+		// }, 1000);
+	});
+	setTimeout(function(){
+		turner.turn("next");
+	}, 50);
 }

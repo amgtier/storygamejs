@@ -9,6 +9,39 @@ body{
 	font-weight: lighter;
 	font-size: 14px;
 }
+body::after {
+	position: absolute;
+	width:0; 
+	height:0; 
+	overflow:hidden; 
+	z-index:-1;
+    content:  url("./../img/2/01.png")
+    url("./../img/2/02.png")
+    url("./../img/2/03.png")
+    url("./../img/2/04.png")
+    url("./../img/2/05.png")
+    url("./../img/2/06.png")
+    url("./../img/3/01.png")
+    url("./../img/3/02.png")
+    url("./../img/3/03.png")
+    url("./../img/3/04.png")
+    url("./../img/4/put_on/called-01.png")
+    url("./../img/4/put_on/called-02.png")
+    url("./../img/4/put_on/lower-01.png")
+    url("./../img/4/put_on/lower-02.png")
+    url("./../img/4/put_on/raise-01.png")
+    url("./../img/4/put_on/raise-02.png")
+    url("./../img/4/put_off/called-01.png")
+    url("./../img/4/put_off/called-02.png")
+    url("./../img/4/put_off/lower-01.png")
+    url("./../img/4/put_off/lower-02.png")
+    url("./../img/4/put_off/raise-01.png")
+    url("./../img/4/put_off/raise-02.png")
+    url("./../img/5/01.png")
+    url("./../img/5/02.png")
+    url("./../img/6/01.png")
+    ;
+}
 a{
 	color: #bdccd4;
 }

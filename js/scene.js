@@ -1,6 +1,5 @@
 var bg_bathroom = [{url: "./img/2/01.png"}, {url: "./img/2/02.png", left: -1}];
-// var bg_pregnancy_test_stick = [{url: "./img/2/03.png"}, {url: "./img/2/04.png"}];
-var bg_hospital_outside = [{url: "./img/3/01.png"}, {url: "./img/3/02.png"}, {url: "./img/3/03.png"}];
+var bg_hospital_outside = [{url: "./img/3/01.png", timeout: 2}, {url: "./img/3/02.png", timeout: 2}, {url: "./img/3/03.png", timeout: 2}, {url: "./img/3/04.png", timeout: 2, end: true,}];
 var bg_hospital_in_on_lower = [{url: "./img/4/put_on/lower-01.png"}, {url: "./img/4/put_on/lower-02.png"}];
 var bg_hospital_in_on_raise = [{url: "./img/4/put_on/raise-01.png"}, {url: "./img/4/put_on/raise-02.png", left: 1}];
 var bg_hospital_in_on_called = [{url: "./img/4/put_on/called-01.png"}, {url: "./img/4/put_on/called-02.png"}];
@@ -163,10 +162,13 @@ var scene = {
 	},
 	2006 : {
 		description: "再驗一次-訊息後",
-		// text_color: "#4d4d4d",
+		story: [
+		"我拿出另一支驗孕棒，再驗一次。",
+		"沒有意外還是兩條線，我真的懷孕了。",
+		],
 		image_story: [
 		{url: "./img/2/03.png"},
-		{url: "./img/2/04.png", timeout: 2, transition: 1}
+		{url: "./img/2/04.png", timeout: 2, transition: 3}
 		],
 		btn_left: {
 			text: "繼續",
@@ -175,10 +177,13 @@ var scene = {
 	},
 	2007 : {
 		description: "再驗一次-訊息前",
-		// text_color: "#4d4d4d",
+		story: [
+		"我拿出另一支驗孕棒，再驗一次。",
+		"沒有意外還是兩條線，我真的懷孕了。",
+		],
 		image_story: [
 		{url: "./img/2/03.png"},
-		{url: "./img/2/04.png", timeout: 2, transition: 1}
+		{url: "./img/2/04.png", timeout: 2, transition: 3}
 		],
 		btn_left: {
 			text: "直接打電話給男友",
@@ -323,6 +328,7 @@ var scene = {
 		background: bg_hospital_outside,
 		text_color: "#4d4d4d",
 		story_date: "2018/10/1",
+		page_turn: true,
 		story: [
 		"今天子曜帶我去看婦產科。",
 		"在進去診所之前，他給了我一包口罩，問我要不要戴？",
