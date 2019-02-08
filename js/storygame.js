@@ -221,14 +221,18 @@ class StoryGame {
 		/* buttons */
 		if (end >= s.story.length){
 			this.story_section = 0;
-			this.render_buttons(s);
+			if (s.image_story == undefined){
+				this.render_buttons(s);
+			}
 		}
 		else {
 			this.story_section += 1;
-			this.render_buttons({
-				text_color: s.text_color,
-				btn_left:{text: "繼續", scene: this.curr_scene}
-			})
+			if (s.image_story == undefined){
+				this.render_buttons({
+					text_color: s.text_color,
+					btn_left:{text: "繼續", scene: this.curr_scene}
+				})
+			}
 		}
 
 	}
@@ -355,7 +359,9 @@ class StoryGame {
 					}
 					else {
 						/* buttons */
-						self.render_buttons(s);
+						if (s.image_story == undefined){
+							self.render_buttons(s);
+						}
 					}
 				}
 			}, (LINE_SKIP_TIMEOUT) ? 0 : timeout_count*1000);
@@ -401,6 +407,7 @@ class StoryGame {
 							}
 							else {
 								self.render_buttons(s);
+								console.log(3)
 							}
 						}
 					}
