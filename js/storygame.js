@@ -73,6 +73,7 @@ class StoryGame {
 	}
 
 	render(n_s) {
+		console.log("[current scene:", n_s, "]")
 		var s = this.s[n_s];
 		this.curr_scene = n_s;
 		if (s == undefined) {
@@ -86,6 +87,23 @@ class StoryGame {
 		if (s.page_turn && this.story_section == 0) {
 			this.screen.append($("<div>", {id: "page-turner"}));
 			page_turn(this.prev_bg, this.width, this.height);
+		}
+		if (s.background_sequenced_random){
+			var tmp_bg = [];
+			// var new_bg = [];
+			for (let index = 0; index < s.background_sequenced_random; index ++){
+				var section = [];
+				for (let each = index; each < s.background.length; each+=s.background_sequenced_random){
+					section.push(s.background[each]);
+				}
+				tmp_bg.push(shuffle(section));
+			}
+			for (let each in tmp_bg) {
+				for (let j in tmp_bg[each]){
+					// new_bg[parseInt(each)+parseInt(s.background_sequenced_random) * j] = tmp_bg[each][j];
+					s.background[parseInt(each)+parseInt(s.background_sequenced_random) * j] = tmp_bg[each][j];
+				}
+			}
 		}
 		if (s.background != undefined){
 			let background = s.background
@@ -122,6 +140,9 @@ class StoryGame {
 			else {
 				this.render_image_story(s);
 			}
+		}
+		if(s.img_btn != undefined){
+			this.render_image_btn(s);
 		}
 	}
 
@@ -170,7 +191,13 @@ class StoryGame {
 				$(this.screen).css("background-position-x", bg.left+"px");
 			}
 			if (bg.right != undefined) {
-				$(this.screen).css("background-position-y", bg.right+"px");
+				$(this.screen).css("background-position-x", "-"+bg.right+"px");
+			}
+			if (bg.up != undefined) {
+				$(this.screen).css("background-position-y", bg.up+"px");
+			}
+			if (bg.down != undefined) {
+				$(this.screen).css("background-position-y", "-"+bg.down+"px");
 			}
 			this.prev_bg = bg;
 		}
@@ -403,11 +430,10 @@ class StoryGame {
 							if (j.timeout != undefined) {
 								setTimeout(function(){
 									self.render_buttons(s)
-								}, j.timeout * 1000);
+								}, (j.timeout + 1) * 1000);
 							}
 							else {
 								self.render_buttons(s);
-								console.log(3)
 							}
 						}
 					}
@@ -463,19 +489,82 @@ class StoryGame {
 			this.btn_handler("#btn-2", s.btn_middle, this.self);
 			this.btn_handler("#btn-3", s.btn_right, this.self);
 		}
+		else if (s.btn_upper != undefined || s.btn_center != undefined || s.btns_lower != undefined) {
+			var btns = $("<div>", {class: "btn-wrapper"});
+			if (s.btn_upper != undefined){
+				$("<a>", {
+					id: "btn-4", 
+					href: "#",
+					class: "btn btn-default",
+					text: s.btn_upper.text,
+				}).appendTo(btns);
+			}
+			if (s.btn_center != undefined){
+				$("<a>", {
+					id: "btn-5", 
+					href: "#",
+					class: "btn btn-default",
+					text: s.btn_center.text,
+				}).appendTo(btns);
+			}
+			if (s.btn_lower != undefined){
+				$("<a>", {
+					id: "btn-6", 
+					href: "#",
+					class: "btn btn-default",
+					text: s.btn_lower.text,
+				}).appendTo(btns);
+			}
+			$(this.screen).append(btns);
+			if (s.btns_color != undefined) {
+				btns.css({
+					"color": s.btns_color,
+					"border-color": s.text_color,
+				});
+			}
+			else if (s.text_color != undefined) {
+				btns.find(".btn").css({
+					"color": s.text_color,
+					"border-color": s.text_color,
+				});
+			}
+			this.btn_handler("#btn-4", s.btn_upper, this.self);
+			this.btn_handler("#btn-5", s.btn_center, this.self);
+			this.btn_handler("#btn-6", s.btn_lower, this.self);
+		}
+	}
+
+	render_image_btn(s) {
+		var btns = $("<div>", {class: "btn-wrapper"});
+		var self = this;
+		$.each(s.img_btn, function(i, j){
+			console.log(j[0], j[1])
+			let k = $("<img>", {
+				src: j[0], 
+				class: "img-btn"
+			});
+			k.on("click", function(){
+				self.render(j[1])
+			})
+			btns.append(k);
+		})
+		self.screen.append(btns);
+
 	}
 
 }
 
 function page_turn(prev_bg, width, height) {
 	var turner = $("#page-turner");
-	turner.append($("<div>", {id: "page-1", style: "background: white"}));
+	// $(".story-wrapper").css("position", "absolute");
+	turner.append($("<div>", {id: "page-1", style: "background: white;"}));
 	turner.append($("<div>", {id: "page-2 even", style: "background: white; display: none;"}));
 	turner.css({
 	    height: "100%",
 	    width: "calc(100% + 76px)",
 	    "margin-left": "-38px",
 	    "z-index": 1,
+	    position: "absolute",
 	});
 	turner.turn({
 		acceleration: true,
@@ -486,11 +575,21 @@ function page_turn(prev_bg, width, height) {
 		duration: 3000,
 	});
 	turner.bind("turned", function(){
-		// setTimeout(function(){
-			turner.remove();
-		// }, 1000);
+		turner.remove();
+		// $(".story-wrapper").css("position", "relative");
 	});
 	setTimeout(function(){
 		turner.turn("next");
 	}, 50);
+}
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
 }

@@ -9,6 +9,9 @@ body{
 	font-weight: lighter;
 	font-size: 14px;
 }
+::-webkit-scrollbar { 
+    display: none; 
+}
 body::after {
 	position: absolute;
 	width:0; 
@@ -40,6 +43,65 @@ body::after {
     url("./../img/5/01.png")
     url("./../img/5/02.png")
     url("./../img/6/01.png")
+    url("./../img/7/dad_hit/06.png")
+    url("./../img/7/dad_hit/07.png")
+    url("./../img/7/dad_hit/08.png")
+    url("./../img/7/dad_hit/23.png")
+    url("./../img/7/dad_hit_table/03.png")
+    url("./../img/7/dad_hit_table/04.png")
+    url("./../img/7/dinner/1-1.png")
+    url("./../img/7/dinner/1-2.png")
+    url("./../img/7/dinner/2-1.png")
+    url("./../img/7/dinner/2-2.png")
+    url("./../img/7/dinner/3-1.png")
+    url("./../img/7/dinner/3-2.png")
+    url("./../img/7/dinner_stopped/01.png")
+    url("./../img/7/dinner_stopped/02.png")
+    url("./../img/8/01.png")
+    url("./../img/8/02.png")
+    url("./../img/9/boy-mom.png")
+    url("./../img/9/boy-side.png")
+    url("./../img/9/girl-angry.png")
+    url("./../img/9/girl-dad.png")
+    url("./../img/9/girl-side.png")
+    url("./../img/9/teacher.png")
+    url("./../img/10/12.png")
+    url("./../img/12/os.png")
+    url("./../img/12/get-med.png")
+	url("./../img/12/os.png")
+	url("./../img/16/dispose.png")
+	url("./../img/16/1.png")
+	url("./../img/16/2.png")
+	url("./../img/16/3.png")
+	url("./../img/16/4.png")
+	url("./../img/16/5.png")
+	url("./../img/16/6.png")
+	url("./../img/16/7.png")
+	url("./../img/16/7.png")
+	url("./../img/16/7.png")
+	url("./../img/17/ask.png")
+	url("./../img/17/angry.png")
+	url("./../img/12/search-1.png")
+	url("./../img/12/search-2.png")
+	url("./../img/12/search-3.png")
+	url("./../img/12/search-4.png")
+	url("./../img/13/take-med1.png")
+	url("./../img/13/take-med2.png")
+	url("./../img/13/take-med3.png")
+	url("./../img/15/1.png")
+	url("./../img/15/2.png")
+	url("./../img/15/3.png")
+	url("./../img/15/4.png")
+	url("./../img/15/5.png")
+	url("./../img/15/6.png")
+	url("./../img/14/1.png")
+	url("./../img/14/2.png")
+	url("./../img/18/gohome1.png")
+	url("./../img/18/gohome2.png")
+	url("./../img/18/ach1.png")
+	url("./../img/18/ach2.png")
+	url("./../img/18/amb1.png")
+	url("./../img/18/amb2.png")
     ;
 }
 a{
@@ -114,8 +176,29 @@ a:hover{
 	left: 200px;
 }
 
+#btn-4{
+	position: absolute;;
+	left: 0px;
+	width: 300px;
+}
+
+#btn-5{
+	position: absolute;;
+	left: 0px;
+	width: 300px;
+	top: 37px;
+}
+
+#btn-6{
+	position: absolute;;
+	left: 0px;
+	width: 300px;
+	top: 74px;
+}
+
 .story-wrapper{
-	position: relative;
+	width: 300px;
+	position: absolute;
 	top: 70px;
 	color: #bdccd4;
 	font-size: 13.5px;
@@ -152,7 +235,17 @@ a:hover{
     margin-bottom: -3px;
 }
 
+.line-right .line-msg{
+	/*float: right;*/
+}
+
+.line-left .line-msg{
+	/*float: left;*/
+}
+
 .line-msg{
+	display: inline-block;
+	max-width: 150px;
 	background: #fff;
 	color: #b3b3b3;
 	/*color: #4d4d4d;*/
@@ -163,10 +256,19 @@ a:hover{
 	padding-right: 9px;
     letter-spacing: 0.5px;
     font-size: 13px;
+    text-align: left;
 }
 
 .line-call{
 	color: #999;
 	/*color: #808080;*/
 	font-style: italic;
+}
+
+.img-btn{
+	width: 170px;
+	display: block;
+	margin-left: calc((375px - 60px - 170px) / 2);
+	margin-top: 30px;
+	cursor: pointer;
 }
