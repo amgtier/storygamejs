@@ -8,6 +8,7 @@ body{
 	font-family: 'Noto Sans CJK TC light', sans-serif;
 	font-weight: lighter;
 	font-size: 14px;
+	background: #555;
 }
 ::-webkit-scrollbar { 
     display: none; 
@@ -105,7 +106,7 @@ body::after {
     ;
 }
 a{
-	color: #bdccd4;
+	color: #fff;
 }
 a:hover{
 	color: #254b5b;
@@ -113,10 +114,11 @@ a:hover{
 }
 .btn{
 	border-radius: 0px;
-	color: #bdccd4;
+	color: #fff;
+	font-size: 14px !important;
 }
 .btn:hover{
-	background: #bdccd4;
+	background: #fff;
 	color: #254b5b;
 }
 
@@ -150,7 +152,7 @@ a:hover{
 }
 
 .btn-wrapper .btn-default{
-    border: 1px solid #bdccd4;
+    border: 1px solid #fff;
     width: 87pt;
     font-size: 13px;
     padding-top: 5px;
@@ -200,7 +202,7 @@ a:hover{
 	width: 300px;
 	position: absolute;
 	top: 70px;
-	color: #bdccd4;
+	color: #fff;
 	font-size: 13.5px;
 	/*white-space: nowrap;*/
 }
@@ -228,7 +230,7 @@ a:hover{
 
 .line-read{
     display: inline-block;
-	color: #bdccd4;
+	color: #fff;
 	font-size: 10px;
     transform: scale(0.8);
     vertical-align: bottom;

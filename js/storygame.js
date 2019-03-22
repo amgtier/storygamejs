@@ -26,6 +26,14 @@ class StoryGame {
 		var url = new URL(window.location.href);
 		var scene = url.searchParams.get("scene");
 		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 2001 : window.location.hash.substring(1, window.location.hash.length) : scene);
+
+		var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
+		var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
+		var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
+		$("body").prepend(audio_bg);
+		$("body").prepend(audio_line_read);
+		$("body").prepend(audio_line_call);
+		audio_bg.trigger("play");
 	}
 
 	preload_all_img(){
@@ -115,6 +123,12 @@ class StoryGame {
 			if (s.auto_render != undefined){
 
 			}
+			else if (s.story_delay != undefined) {
+				self = this
+				setTimeout(function(){
+					self.render_story(s);
+				}, s.story_delay * 1000)
+			}
 			else {
 				this.render_story(s);
 			}
@@ -143,6 +157,9 @@ class StoryGame {
 		}
 		if(s.img_btn != undefined){
 			this.render_image_btn(s);
+		}
+		if (s.audio != undefined) {
+			this.render_audio(s);
 		}
 	}
 
@@ -186,7 +203,7 @@ class StoryGame {
 			else{
 				$(this.screen).css("background", "url("+bg.url+")");
 			}
-			$(this.screen).css("background-size", this.width+"px "+this.height+"px");
+			$(this.screen).css("background-size", (this.width+2)+"px "+(this.height + 2)+"px");
 			if (bg.left != undefined) {
 				$(this.screen).css("background-position-x", bg.left+"px");
 			}
@@ -277,6 +294,10 @@ class StoryGame {
 			timeout_count += j.timeout;
 			setTimeout(function(){
 				if (j.type == "read") {
+					/* play audio */
+					$("audio#line-read")[0].play();
+					console.log("audio triggered")
+
 					row = $("<p>", {class: "line line-right text-right"});
 					row.append($("<span>", {class: "line-read", text: "已讀"}));
 					if (j.message != undefined){
@@ -298,6 +319,10 @@ class StoryGame {
 					line.append(row);
 				}
 				else if (j.type == "read-above") {
+					/* play audio */
+					$("audio#line-read")[0].play();
+					console.log("audio triggered")
+
 					$.each(line.find("p.line-right"), function(k, v){
 						if ($(v).find("span.line-read").length == 0){
 							$(v).prepend($("<span>", {class: "line-read", text: "已讀"}));
@@ -345,6 +370,13 @@ class StoryGame {
 					line.append(row);
 				}
 				else if (j.type == "outgoing dialing") {
+					$("audio#line-call")[0].play();
+					setTimeout(function(){
+						$("audio#line-call")[0].currentTime = 0;
+						$("audio#line-call")[0].play();
+					}, 3000)
+					console.log("audio triggered")
+
 					row = $("<p>", {class: "line line-right text-right"});
 					row.append($("<span>", {class: "line-msg line-call", text: "撥打中..."}));
 					line.append(row);
@@ -369,7 +401,7 @@ class StoryGame {
 				}
 				if (line[0].scrollHeight > 240){
 					line.css("top", "10px");
-					line.animate({scrollTop: line[0].scrollHeight}, 500);
+					line.animate({scrollTop: line[0].scrollHeight}, 0); ////
 					// line.css({scrollTop: line[0].scrollHeight}, 500);
 				}
 				if (i == s.line.length - 1) {
@@ -472,7 +504,15 @@ class StoryGame {
 					text: s.btn_right.text,
 				}).appendTo(btns);
 			}
-			$(this.screen).append(btns);
+			if (s.btn_delay != undefined){
+				self = this;
+				setTimeout(function(){
+					$(self.screen).append(btns);
+				}, s.btn_delay * 1000);
+			}
+			else{
+				$(this.screen).append(btns);
+			}
 			if (s.btns_color != undefined) {
 				btns.css({
 					"color": s.btns_color,
@@ -551,7 +591,10 @@ class StoryGame {
 		self.screen.append(btns);
 
 	}
-
+	render_audio(s){
+		console.log(s.audio)
+		// var audio = $("<audio>", {})
+	}
 }
 
 function page_turn(prev_bg, width, height) {
