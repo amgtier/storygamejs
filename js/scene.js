@@ -65,6 +65,7 @@ var scene = {
 			scene: 1002,
 			class: "start-game",
 		},
+
 	},
 	1002:{
 		description: "封面",
@@ -496,6 +497,9 @@ var scene = {
 		static_image: [
 		{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
 		],
+		bgm: [
+			{url: dong},
+		],
 		btn_left: {
 			text: "繼續",
  			scene: 5001,
@@ -513,6 +517,9 @@ var scene = {
 		static_image: [
 		{url: "./img/4/put_on/mask.png", up: 1},
 		{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
+		],
+		bgm: [
+			{url: dong},
 		],
 		btn_left: {
 			text: "繼續",

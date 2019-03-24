@@ -1,5 +1,6 @@
 MAX_STORY_PARAGRAPH = 3
 LINE_SKIP_TIMEOUT = false;
+var bgm_timeout;
 class StoryGame {
 	constructor(game, scene){
 		this.screen = $("#game");
@@ -15,7 +16,6 @@ class StoryGame {
 	}
 
 	start(){
-		 $(document).click();  // for audio to start.
 		if (this.s == null){
 			console.log("[error] Scene is not set.");
 			return;
@@ -57,7 +57,9 @@ class StoryGame {
 	}
 
 	render(n_s) {
+		$(document).click();  // for audio to start.
 		console.log("[current scene:", n_s, "]")
+		clearTimeout(bgm_timeout);
 		var s = this.s[n_s];
 		this.curr_scene = n_s;
 		if (s == undefined) {
@@ -649,7 +651,7 @@ class StoryGame {
 		self = this;
 		// audio.trigger("play");
 		audio[0].play();
-		setTimeout(function(){
+		bgm_timeout = setTimeout(function(){
 			self.bgm_recursive(audio, timeout);
 		}, timeout * 1000);
 	}
