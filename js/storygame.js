@@ -15,6 +15,7 @@ class StoryGame {
 	}
 
 	start(){
+		 $(document).click();  // for audio to start.
 		if (this.s == null){
 			console.log("[error] Scene is not set.");
 			return;
@@ -25,48 +26,23 @@ class StoryGame {
 		// GET params
 		var url = new URL(window.location.href);
 		var scene = url.searchParams.get("scene");
-		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 2001 : window.location.hash.substring(1, window.location.hash.length) : scene);
+		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 1001 : window.location.hash.substring(1, window.location.hash.length) : scene);
 
-		var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
-		var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
-		var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
-		$("body").prepend(audio_bg);
-		$("body").prepend(audio_line_read);
-		$("body").prepend(audio_line_call);
-		audio_bg.trigger("play");
+		setTimeout(function(){
+			console.log("[music loading]")
+			var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
+			var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
+			var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
+			$("body").prepend(audio_bg);
+			$("body").prepend(audio_line_read);
+			$("body").prepend(audio_line_call);
+			 audio_bg[0].play();
+			// audio_bg.trigger("play");
+			console.log("[music playing]")
+		}, 2000);
 	}
 
 	preload_all_img(){
-		// $("body").css("content", 'url("./../img/5/01.png")');
-		// var bgs = [
-		// 	bg_bathroom, 
-		// 	bg_hospital_outside, 
-		// 	bg_hospital_in_on_lower, 
-		// 	bg_hospital_in_on_raise,
-		// 	bg_hospital_in_on_called, 
-		// 	bg_hospital_in_off_lower, 
-		// 	bg_hospital_in_off_raise,
-		// 	bg_hospital_in_off_called, 
-		// 	bg_hospital_in_doctor, 
-		// 	bg_hospital_out_discuss
-		// ];
-		// var self = this;
-		// var i = 0;
-		// var render_background = this.render_background;
-
-		// while (i < bgs.length) {
-		// 	let j = 0;
-		// 	while (j < bgs[i].length){
-		// 		// setTimeout(function(){
-		// 		// 	console.log(i, j)
-		// 		self.render_background(bgs[i][j]);
-		// 		// 	if (j == bg[i].length) {
-		// 		// 	}
-		// 		// }, 1000);
-		// 		j += 1;
-		// 	}
-		// 	i += 1;
-		// }
 	}
 
 	loading(flag) {
@@ -117,6 +93,9 @@ class StoryGame {
 			let background = s.background
 			this.render_background(background);
 		}
+		else{
+			this.screen.css("background", "");
+		}
 
 		/* story */
 		if (s.story != undefined && s.story.length > 0){
@@ -155,11 +134,20 @@ class StoryGame {
 				this.render_image_story(s);
 			}
 		}
+		if (s.static_image != undefined) {
+			this.render_static_image(s);
+		}
 		if(s.img_btn != undefined){
 			this.render_image_btn(s);
 		}
 		if (s.audio != undefined) {
 			this.render_audio(s);
+		}
+		if (s.bgm != undefined) {
+			self = this;
+			setTimeout(function(){
+				self.render_bgm(s);
+			}, 2000);
 		}
 	}
 
@@ -513,6 +501,17 @@ class StoryGame {
 			else{
 				$(this.screen).append(btns);
 			}
+
+			if (s.btn_left != undefined && s.btn_left.class != undefined){
+				$("#btn-1").addClass(s.btn_left.class);
+			}
+			if (s.btn_middle != undefined && s.btn_middle.class != undefined){
+				$("#btn-2").addClass(s.btn_middle.class);
+				console.log($("#btn-2"))
+			}
+			if (s.btn_right != undefined && s.btn_right.class != undefined){
+				$("#btn-3").addClass(s.btn_right.class);
+			}
 			if (s.btns_color != undefined) {
 				btns.css({
 					"color": s.btns_color,
@@ -556,6 +555,16 @@ class StoryGame {
 				}).appendTo(btns);
 			}
 			$(this.screen).append(btns);
+			if (s.btn_upper != undefined && s.btn_upper.class != undefined){
+				$("#btn-4").addClass(s.btn_upper.class);
+			}
+			if (s.btn_center != undefined && s.btn_center.class != undefined){
+				$("#btn-5").addClass(s.btn_center.class);
+			}
+			if (s.btn_lower != undefined && s.btn_lower.class != undefined){
+				$("#btn-6").addClass(s.btn_lower.class);
+			}
+
 			if (s.btns_color != undefined) {
 				btns.css({
 					"color": s.btns_color,
@@ -591,9 +600,58 @@ class StoryGame {
 		self.screen.append(btns);
 
 	}
+	
 	render_audio(s){
 		console.log(s.audio)
 		// var audio = $("<audio>", {})
+	}
+	
+	render_static_image(s){
+		self = this;
+		$.each(s.static_image, function(){
+			if (this.url != undefined){
+				var img = $("<img>", {src: this.url});
+				self.screen.append($("<div>", {class: "static-image"}).append(img));
+				if (this.left != undefined) {
+					img.css("left", this.left + "px");
+				}
+				if (this.up != undefined) {
+					img.css("top", this.up + "px");
+				}
+			}
+			else{
+				self.screen.append($("<div>", {class: "static-image"}).append("<img>", {src: this}));
+			}
+		});
+	}
+
+	render_bgm(s) {
+		console.log("[bgm playing]")
+		self = this;
+		$.each(s.bgm, function(){
+ 			var audio = $("<audio>", {src: this.url, class: "audio", volume: 0.2});
+			if (s.loop != undefined && s.loop == true){
+				audio.attr("loop", "loop");
+			}
+			$("body").prepend(audio);
+
+			if (this.timeout != undefined) {
+				self.bgm_recursive(audio, this.timeout);
+			}
+			else{
+				// audio.trigger("play");
+				audio[0].play();
+			}
+		});
+	}
+
+	bgm_recursive(audio, timeout) {
+		self = this;
+		// audio.trigger("play");
+		audio[0].play();
+		setTimeout(function(){
+			self.bgm_recursive(audio, timeout);
+		}, timeout * 1000);
 	}
 }
 

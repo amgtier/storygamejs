@@ -8,7 +8,7 @@ body{
 	font-family: 'Noto Sans CJK TC light', sans-serif;
 	font-weight: lighter;
 	font-size: 14px;
-	background: #555;
+	background: #000;
 }
 ::-webkit-scrollbar { 
     display: none; 
@@ -60,13 +60,22 @@ body::after {
     url("./../img/7/dinner_stopped/02.png")
     url("./../img/8/01.png")
     url("./../img/8/02.png")
+    url("./../img/9/gs1.png")
+    url("./../img/9/gs2.png")
+    url("./../img/9/gs3.png")
     url("./../img/9/boy-mom.png")
+    url("./../img/9/boy-dad.png")
     url("./../img/9/boy-side.png")
     url("./../img/9/girl-angry.png")
     url("./../img/9/girl-dad.png")
+    url("./../img/9/girl-mom.png")
+    url("./../img/9/girl.png")
     url("./../img/9/girl-side.png")
+    url("./../img/9/teacher-2.png")
     url("./../img/9/teacher.png")
     url("./../img/10/12.png")
+    url("./../img/10/13.png")
+    url("./../img/10/14.png")
     url("./../img/12/os.png")
     url("./../img/12/get-med.png")
 	url("./../img/12/os.png")
@@ -82,6 +91,7 @@ body::after {
 	url("./../img/16/7.png")
 	url("./../img/17/ask.png")
 	url("./../img/17/angry.png")
+	url("./../img/12/search-0.png")
 	url("./../img/12/search-1.png")
 	url("./../img/12/search-2.png")
 	url("./../img/12/search-3.png")
@@ -103,6 +113,7 @@ body::after {
 	url("./../img/18/ach2.png")
 	url("./../img/18/amb1.png")
 	url("./../img/18/amb2.png")
+	url("./../img/4/put_on/preg-1.png")
     ;
 }
 a{
@@ -161,6 +172,9 @@ a:hover{
     padding-right: 3px;
     transform: scale(0.8);
     margin-left: -11px;
+}
+.btn.start-game {
+	top: 280px;	
 }
 
 #btn-1{
@@ -273,4 +287,22 @@ a:hover{
 	margin-left: calc((375px - 60px - 170px) / 2);
 	margin-top: 30px;
 	cursor: pointer;
+}
+
+ .static-image{
+    position: absolute;
+    top: 0;
+    /*left: -38px;*/
+    /*width: calc(100% + 76px);*/
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.static-image img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

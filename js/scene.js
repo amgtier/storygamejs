@@ -1,8 +1,10 @@
 var bg_audio = "./bgm/ok/bg.mp3"
 var line_read = "./bgm/ok/line_read.mp3"
 var line_call = "./bgm/ok/line_call.mp3"
+var dong = "./bgm/ok/dongdong.mp3"
+var amb_siren = "./bgm/ok/ambulance.mp3"
 
-
+var cover = [{url: "./img/0.png"}];
 var bg_bathroom = [{url: "./img/2/01.png"}, {url: "./img/2/02.png", left: -1}];
 var bg_hospital_outside = [{url: "./img/3/01.png"}];
 var bg_hospital_in_on_lower = [{url: "./img/4/put_on/lower-01.png", timeout: 2}, {url: "./img/4/put_on/lower-02.png", timeout: 2}];
@@ -18,13 +20,16 @@ var bg_home_dinner_stopped = [{url: "./img/7/dinner_stopped/01.png"}, {url: "./i
 var bg_dad_hit_table = [{url: "./img/7/dad_hit_table/03.png"}, {url: "./img/7/dad_hit_table/04.png", left: -1, up: -2}];
 var bg_dad_hit = [{url: "./img/7/dad_hit/06.png", timeout: 2}, {url: "./img/7/dad_hit/07.png", up: -0.5, timeout: 1}, {url: "./img/7/dad_hit/08.png", left: 0, timeout: 2}, {url: "./img/7/dad_hit/23.png", timeout: 2, end: true}];
 var bg_dinner_texting = [{url: "./img/8/01.png"}, {url: "./img/8/02.png"}];
+var bg_school_teacher2 = [{url: "./img/9/teacher-2.png"}];
 var bg_school_teacher = [{url: "./img/9/teacher.png"}];
+var bg_go_to_school = [{url: "./img/9/gs1.png", timeout: 1}, {url: "./img/9/gs2.png", timeout: 1}, {url: "./img/9/gs3.png", timeout: 1}];
 var bg_school_boy_side = [{url: "./img/9/boy-side.png"}];
 var bg_school_boy_mom = [{url: "./img/9/boy-mom.png"}];
 var bg_school_girl_side = [{url: "./img/9/girl-side.png"}];
 var bg_school_girl_dad = [{url: "./img/9/girl-dad.png"}];
 var bg_school_girl_angry = [{url: "./img/9/girl-angry.png"}];
-var bg_clinic = [{url: "./img/10/12.png"}];
+var bg_clinic_raise = [{url: "./img/10/12.png", timeout: 2.5}, {url: "./img/10/13.png", end: true}];
+var bg_clinic = [{url: "./img/10/13.png"}, {url: "./img/10/14.png"}];
 var bg_get_med = [{url: "./img/12/get-med.png"}];
 var bg_os = [{url: "./img/12/os.png"}]
 var bg_get_med_dispose = [{url: "./img/12/get-med.png", timeout: 2}, {url: "./img/16/dispose.png", end: true}];
@@ -32,7 +37,7 @@ var bg_preg_walk_on_street = [{url: "./img/16/1.png", timeout: 2}, {url: "./img/
 var bg_before_ask = [{url: "./img/16/7.png"}]
 var bg_ask = [{url: "./img/17/ask.png"}]
 var bg_angry = [{url: "./img/17/angry.png"}]
-var bg_search = [{url: "./img/12/search-4.png"}];
+var bg_search = [{url: "./img/12/search-0.png", timeout: 1}, {url: "./img/12/search-1.png", timeout: 1}, {url: "./img/12/search-2.png", timeout: 0.3}, {url: "./img/12/search-3.png", timeout: 0.3}, {url: "./img/12/search-4.png", timeout: 0.3, end:true}, ];
 var bg_take_med = [{url: "./img/13/take-med1.png", timeout: 5}, {url: "./img/13/take-med2.png", timeout: 5, dissolve: 2}, {url: "./img/13/take-med3.png", dissolve: 2, end: true}];
 var bg_take_med_1 = [{url: "./img/13/take-med1.png"}];
 var bg_take_med_2 = [{url: "./img/13/take-med2.png"}];
@@ -51,6 +56,34 @@ var bg_ending_32 = [{url: "./img/99/3/3-2-bg.png"}];
 var bg_ending_41 = [{url: "./img/99/4/4-1-bg.png"}];
 var bg_ending_42 = [{url: "./img/99/4/4-2-bg.png"}];
 var scene = {
+	1001:{
+		description: "封面",
+		background: cover,
+		story: [""],
+		btn_middle: {
+			text: "開始遊戲",
+			scene: 1002,
+			class: "start-game",
+		},
+	},
+	1002:{
+		description: "封面",
+		story: [
+			"（這是一個故事情境體驗遊戲，我們希望透過這個遊戲讓你知道，非預期懷孕是什麼？這雖然只是別人的故事，在遊戲中做的選擇並不影響你真實的人生，但我們希望透過這遊戲讓大家進行思考，如果是我我該怎麼辦？並非每個人都能那麼幸孕，讓我們用同理心打造溫暖的社會。故事內容都由真實故事改編，遊戲時間大約15分鐘！）",
+			"",
+			"",
+			"這，是一本日記本。",
+			"",
+			"",
+			"日記本的主人--方芷潔，今年17歲，每天都在努力地讀書，為了考上理想的大學。",
+			"然而卻發生......讓生活徹底變了樣，翻開下一頁吧！看看芷潔究竟發生什麼事？",
+			"要記得你在日記本中的每個選擇，都會影響到芷潔的人生...",
+		],
+		btn_left: {
+			text: "繼續",
+			scene: 2001,
+		},
+	},
 	2001:{
 		description: "在廁所",
 		background: bg_bathroom,
@@ -417,8 +450,12 @@ var scene = {
 		"一想到父母對我失望的表情，甚至同學們在背後指指點點，卻在我面前裝沒事。",
 		"想到就很無力",
 		],
-		image_story: [
-			{url: "./img/3/01.png", timeout: 2}, 
+		static_image: [
+			{url: "./img/4/put_on/mask.png", up: 1},
+			{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
+		],
+		bgm: [
+			{url: dong, timeout: 5},
 		],
 		btn_left: {
 			text: "繼續",
@@ -440,6 +477,9 @@ var scene = {
 		"如果檢查完只是虛驚一場，我一定要感謝老天爺再給我一個機會",
 		"我一定會更加小心！",
 		],
+		static_image: [
+		{url: "./img/4/put_on/preg-2.png", left: 2, up: 0},
+		],
 		btn_left: {
 			text: "繼續",
  			scene: 4104,
@@ -452,6 +492,9 @@ var scene = {
 		story: [
 		"12號 方芷潔  進來看診囉！",
 		"終於輪到我了。",
+		],
+		static_image: [
+		{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
 		],
 		btn_left: {
 			text: "繼續",
@@ -466,6 +509,10 @@ var scene = {
 		"12號 方芷潔  進來看診囉！",
 		"護士竟然叫了我的全名，我趕緊看看周圍有沒有認識我的人?",
 		"一般看醫生都會叫全名嗎？我今天才注意到這件事，感到很不舒服。",
+		],
+		static_image: [
+		{url: "./img/4/put_on/mask.png", up: 1},
+		{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
 		],
 		btn_left: {
 			text: "繼續",
@@ -889,8 +936,8 @@ var scene = {
 		},
 	},
 	9001: {
-		description: "在學校",
-		background: bg_school_teacher,
+		description: "走去學校",
+		background: bg_go_to_school,
 		text_color: "#4d4d4d",
 		story_date: "2018/10/2",
 		page_turn: true,
@@ -898,6 +945,17 @@ var scene = {
 		"爸媽走得很快，好像還很生氣，我低著頭緊跟在他們後面。",
 		"輔導室的小房間佈置得很溫馨，稍微舒緩一下我緊繃的神經。",
 		"這時子曜來了，他和爸媽肩並著肩一起走進輔導室，正向著我家的暴風圈走來。",
+		],
+		btn_left: {
+			text: "繼續",
+			scene: 9100,
+		},
+	},
+	9100: {
+		description: "在學校-1",
+		background: bg_school_teacher2,
+		text_color: "#4d4d4d",
+		story: [
 		"我不知道他們會不會吵起來，還是和平解決這一切。",
 		"這時，老師先開始說話，打破沈默。",
 		],
@@ -907,7 +965,7 @@ var scene = {
 		},
 	},
 	9101: {
-		description: "在學校-1",
+		description: "在學校-1.1",
 		background: bg_school_teacher,
 		text_color: "#4d4d4d",
 		story: [
@@ -1117,7 +1175,7 @@ var scene = {
 	},
 	10001: {
 		description: "醫院二檢-生",
-		background: bg_clinic,
+		background: bg_clinic_raise,
 		text_color: "#4d4d4d",
 		story_date: "2018/10/3",
 		page_turn: true,
@@ -1125,6 +1183,18 @@ var scene = {
 			"那時候看著雙方父母你一來我一句，讓我和子曜好尷尬好丟臉。",
 			"當時一衝動就決定要把孩子生下來，",
 			"我其實還沒想好，就脫口而出這個決定。",
+		],
+		btn_left: {
+			text: "繼續",
+			scene: 10000,
+		},
+	},
+	10000: {
+		description: "醫院二檢-生",
+		background: bg_clinic,
+		text_color: "#4d4d4d",
+		story_date: "2018/10/3",
+		story: [
 			"唉我到底在想什麼啊.....",
 			"還好，後來爸媽冷靜下來，告訴我不管我做什麼決定都會尊重我。",
 			"但是我要為我的決定負責，不要妄想把孩子生下來丟給爸媽照顧。",
@@ -1545,6 +1615,7 @@ var scene = {
 			"「對，是妳女兒沒錯！」「對，她叫方芷潔」「是，她穿著高中制服.......」",
 			"後來肚子又一陣劇痛，我眼前一黑，就沒聽到接下來的對話了。",
 		],
+		bgm: [{url: amb_siren}],
 		btn_left: {
 			text: "繼續",
 			scene: 99994,
