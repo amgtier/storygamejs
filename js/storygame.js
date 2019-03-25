@@ -28,18 +28,16 @@ class StoryGame {
 		var scene = url.searchParams.get("scene");
 		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 1001 : window.location.hash.substring(1, window.location.hash.length) : scene);
 
-		setTimeout(function(){
-			console.log("[music loading]")
-			var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
-			var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
-			var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
-			$("body").prepend(audio_bg);
-			$("body").prepend(audio_line_read);
-			$("body").prepend(audio_line_call);
-			 audio_bg[0].play();
-			// audio_bg.trigger("play");
-			console.log("[music playing]")
-		}, 2000);
+		console.log("[music loading]")
+		var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
+		var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
+		var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
+		$("body").prepend(audio_bg);
+		$("body").prepend(audio_line_read);
+		$("body").prepend(audio_line_call);
+		 audio_bg[0].play();
+		// audio_bg.trigger("play");
+		console.log("[music playing]")
 	}
 
 	preload_all_img(){
@@ -151,6 +149,14 @@ class StoryGame {
 				self.render_bgm(s);
 			}, 2000);
 		}
+		this.start_game_handler();
+	}
+
+	start_game_handler() {
+		$(".start-game").on("click", function(){
+			console.log($("audio#bg"))
+			$("audio#bg")[0].play();
+		});
 	}
 
 	prepare_screen() {

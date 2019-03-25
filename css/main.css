@@ -20,6 +20,8 @@ body::after {
 	overflow:hidden; 
 	z-index:-1;
     content:  url("./../img/2/01.png")
+    url("./../img/0.png")
+    url("./../img/1.png")
     url("./../img/2/02.png")
     url("./../img/2/03.png")
     url("./../img/2/04.png")
