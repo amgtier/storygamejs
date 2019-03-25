@@ -82,7 +82,7 @@ var scene = {
 	},
 	1002:{
 		description: "封面",
-		background: cov1,
+		background: cover1,
 		story: [
 			"這，是一本日記本。",
 			"日記本的主人--方芷潔，今年17歲，每天都在努力地讀書，為了考上理想的大學。",
