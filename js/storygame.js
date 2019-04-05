@@ -29,11 +29,11 @@ class StoryGame {
 		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 1001 : window.location.hash.substring(1, window.location.hash.length) : scene);
 
 		var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
-		// var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
-		// var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
+		var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
+		var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
 		$("body").prepend(audio_bg);
-		// $("body").prepend(audio_line_read);
-		// $("body").prepend(audio_line_call);
+		$("body").prepend(audio_line_read);
+		$("body").prepend(audio_line_call);
 	}
 
 	preload_all_img(){
