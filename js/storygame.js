@@ -175,7 +175,10 @@ class StoryGame {
 	btn_handler(btn, actions, self) {
 		var scene = this.s;
 		// var render = this.render;
+		console.log("hello world")
 		$(btn).on("click", function(){
+			console.log("hello")
+			console.log(actions)
 			if (actions.scene != undefined) {
 				self.render(actions.scene);
 			}
@@ -474,6 +477,7 @@ class StoryGame {
 	}
 
 	render_buttons(s) {
+		console.log("hihi render")
 		if (s.btn_left != undefined || s.btn_middle != undefined || s.btn_right != undefined) {
 			var btns = $("<div>", {class: "btn-wrapper"});
 			if (s.btn_left != undefined){

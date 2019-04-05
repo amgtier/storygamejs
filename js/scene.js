@@ -82,7 +82,7 @@ var scene = {
 	},
 	1002:{
 		description: "封面",
-		background: cov1,
+		background: cover1,
 		story: [
 			"這，是一本日記本。",
 			"日記本的主人--方芷潔，今年17歲，每天都在努力地讀書，為了考上理想的大學。",
@@ -103,8 +103,7 @@ var scene = {
 		"我怎麼可能懷孕？",
 		"我怎麼可能懷孕？",
 		"但是驗孕棒上面的確是兩條線，我該怎麼辦？",
-		"要不要先跟卓子曜說啊...",
-		"他如果知道這件事會有什麼反應？",
+		"要不要先跟卓子曜說啊...他如果知道這件事會有什麼反應？",
 		"啊也有可能是驗孕棒不準，還是要再驗一次看看？",],
 		btn_left: {
 			text: "直接打電話給男友",
@@ -120,12 +119,14 @@ var scene = {
 		},
 	},
 	2002: {
-		description: "在廁所-打電話",
+		description: "在廁所-直接打電話給男友",
 		background: bg_bathroom, 
 		line: [
 		{type: "outgoing dialing", timeout: 1},
 		{type: "incoming cancelled", timeout: 5},
 		{type: "received", message: "怎麼了？我在補習", timeout: 2},
+		{type: "read", message: "我發生一件嚴重的事", timeout: 2},
+		{type: "received", message: "怎", timeout: 3},
 		{type: "read", message: "我...我好像懷孕了", timeout: 2},
 		{type: "received", message: "...", timeout: 3},
 		{type: "received", message: "真的假的", timeout: 1},
