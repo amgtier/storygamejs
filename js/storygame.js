@@ -477,7 +477,13 @@ class StoryGame {
 	}
 
 	render_buttons(s) {
+<<<<<<< HEAD
 		console.log("hihi render")
+=======
+console.log(s.btn_left)
+console.log(s.btn_middle)
+console.log(s.btn_right)
+>>>>>>> 63add3812e3f3a7345d42a9ac1f343599e5d26c0
 		if (s.btn_left != undefined || s.btn_middle != undefined || s.btn_right != undefined) {
 			var btns = $("<div>", {class: "btn-wrapper"});
 			if (s.btn_left != undefined){
