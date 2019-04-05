@@ -133,6 +133,9 @@ a:hover{
 	background: #fff;
 	color: #254b5b;
 }
+@media (hover: none) {
+    a:hover { color: inherit; }
+}
 
 #wrapper{
 	width: 100vw;
