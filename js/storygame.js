@@ -36,7 +36,6 @@ class StoryGame {
 		$("body").prepend(audio_line_read);
 		$("body").prepend(audio_line_call);
 		 audio_bg[0].play();
-		// audio_bg.trigger("play");
 		console.log("[music playing]")
 	}
 
