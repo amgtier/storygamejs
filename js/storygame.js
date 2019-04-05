@@ -3,8 +3,10 @@ LINE_SKIP_TIMEOUT = false;
 var bgm_timeout;
 
 window.addEventListener("load", function() {
-    $(".start-game").html("開始遊戲")
+    $(".start-game").html("開始遊戲");
+    game.btn_handler("#btn-1", 1001, game);
     console.log("loaded")
+
 }, false); 
 
 class StoryGame {
@@ -174,6 +176,7 @@ class StoryGame {
 	btn_handler(btn, actions, self) {
 		var scene = this.s;
 		// var render = this.render;
+		console.log(btn, actions, self)
 		$(btn).on("click", function(){
 			if (actions.scene != undefined) {
 				self.render(actions.scene);

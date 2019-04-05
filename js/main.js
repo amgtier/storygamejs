@@ -1,5 +1,6 @@
+var game;
 $().ready(function(){
-	var game = new StoryGame("game", scene);
+	game = new StoryGame("game", scene);
 	// game.setScene(scene);
 	game.height = 667;
 	game.width = 375;

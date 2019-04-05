@@ -67,7 +67,7 @@ var scene = {
 		story: [""],
 		btn_middle: {
 			text: "loading",
-			scene: 1001,
+			// scene: 1001,
 			class: "start-game",
 		},
 
