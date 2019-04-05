@@ -61,27 +61,29 @@ var bg_ending_32 = [{url: "./img/99/3/3-2-bg.png"}];
 var bg_ending_41 = [{url: "./img/99/4/4-1-bg.png"}];
 var bg_ending_42 = [{url: "./img/99/4/4-2-bg.png"}];
 var scene = {
-	1001:{
+	1000:{
 		description: "封面",
 		background: cover,
 		story: [""],
 		btn_middle: {
 			text: "開始遊戲",
-			scene: 1002,
+			scene: 1001,
 			class: "start-game",
 		},
 
 	},
-	1002:{
+	1001:{
 		description: "封面",
+		background: cover1,
 		story: [
-			"這是一個故事情境體驗遊戲，我們希望透過這個遊戲讓你知道，非預期懷孕是什麼？這雖然只是別人的故事，在遊戲中做的選擇並不影響你真實的人生，但我們希望透過這遊戲讓大家進行思考，如果是我我該怎麼辦？並非每個人都能那麼幸孕，讓我們用同理心打造溫暖的社會。故事內容都由真實故事改編，遊戲時間大約15分鐘！",
+			"這是一個故事情境體驗遊戲，我們希望透過這個遊戲讓你知道，非預期懷孕是什麼？",
+			"這雖然只是別人的故事，在遊戲中做的選擇並不影響你真實的人生，但我們希望透過這遊戲讓大家進行思考，如果是我我該怎麼辦？",
 			"",
-			"",
+			"並非每個人都能那麼幸孕，讓我們用同理心打造溫暖的社會。故事內容都由真實故事改編，遊戲時間大約15分鐘！",
 		],
 		btn_left: {
 			text: "繼續",
-			scene: 2001,
+			scene: 1002,
 		},
 	},
 	1002:{
@@ -110,7 +112,7 @@ var scene = {
 		"要不要先跟卓子曜說啊...他如果知道這件事會有什麼反應？",
 		"啊也有可能是驗孕棒不準，還是要再驗一次看看？",],
 		btn_left: {
-			text: "直接打電話給男友",
+			text: "打電話給男友",
 			scene: 2002,
 		},
 		btn_middle: {
@@ -125,7 +127,6 @@ var scene = {
 	2002: {
 		description: "在廁所-直接打電話給男友",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "outgoing dialing", timeout: 1},
 		{type: "incoming cancelled", timeout: 5},
@@ -158,7 +159,6 @@ var scene = {
 	2003: {
 		description: "在廁所-line",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?", timeout: 0},
 		{type: "sent", message: "發生一件嚴重的事", timeout: 3},
@@ -182,7 +182,6 @@ var scene = {
 	2004: {
 		description: "在廁所-line",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -220,7 +219,6 @@ var scene = {
 	2005: {
 		description: "在廁所-line",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -274,7 +272,6 @@ var scene = {
 	2007 : {
 		description: "再驗一次-訊息前",
 		story: [
-		"還是浮出第二條 Zoom in到說明書",
 		"看完說明書後確定懷孕。",
 		],
 		image_story: [
@@ -293,7 +290,6 @@ var scene = {
 	2008: {
 		description: "在廁所-再驗一次後-打電話",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "outgoing dialing", timeout: 1},
 		{type: "incoming cancelled", timeout: 5},
@@ -326,7 +322,6 @@ var scene = {
 	2009: {
 		description: "在廁所-再驗一次後-line",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?", timeout: 3},
 		{type: "sent", message: "發生一件嚴重的事", timeout: 4},
@@ -350,7 +345,6 @@ var scene = {
 	2010: {
 		description: "在廁所-再驗一次後-line",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -390,7 +384,6 @@ var scene = {
 	2011: {
 		description: "在廁所-再驗一次後-打電話",
 		background: bg_bathroom, 
-		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -490,7 +483,6 @@ var scene = {
 		"我選擇不戴口罩，來看婦產科又不一定代表我懷孕，而且我為什麼要這麼畏畏縮縮？",
 		"我推開診所的門，走了進去。",
 		"掛完號後，隨便找了一個位置坐下。",
-		"---",
 		"等待看診的期間，我開始與自己對話。",
 		"說不緊張是騙人的，因為這關係到我未來的人生。",
 		"如果我檢查完真的懷孕了，我該怎麼辦？是不是要告訴爸媽？",
@@ -638,7 +630,6 @@ var scene = {
 	7101: {
 		description: "在家-我不敢說",
 		background: bg_dinner_texting,
-		line_header: "曜❤️",
 		line: [
 			// {type: "read", message: "但是我們家很保守，我...我不敢說", timeout: 2},
 			{type: "received", message: "那小孩怎麼辦？你想要生下來還是？", timeout: 3},
@@ -664,7 +655,6 @@ var scene = {
 		description: "醫院-我不敢說-not connected",
 		background: bg_hospital_outside,
 		text_color: "#4d4d4d",
-		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "LALALAL121234567898765432345678", timeout: 2},
 			{type: "read", message: "偉大交通大學偉大交通大學偉大交通大學偉大交通大學", timeout: 2},
@@ -881,7 +871,6 @@ var scene = {
 		description: "在家-傳訊息",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
-		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "我剛剛有努力試探一下了，我媽超可怕的，直接問我是不是懷孕了", timeout: 2},
 			{type: "read", message: "我知道我只差一步就可以把它說出來，但是我害怕還是不敢說。", timeout: 3},
@@ -923,7 +912,6 @@ var scene = {
 		description: "在家-沈默不語",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
-		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "我剛剛有努力試探一下了，", timeout: 2},
 			{type: "read", message: "我爸媽很在意我的功課。", timeout: 2},
@@ -955,7 +943,6 @@ var scene = {
 		description: "在家-無法決定",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
-		line_header: "曜❤️",
 		line: [
 			{type: "received", message: "嗯，你還記得我之前跟你說過嗎？", timeout: 2},
 			{type: "read", message: "說過什麼？", timeout: 2},
@@ -975,7 +962,6 @@ var scene = {
 		description: "在家-趕緊拿掉",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
-		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "我想還是趁爸媽發現之前，趕緊把小孩拿掉吧。", timeout: 2},
 			{type: "received", message: "妳確定嗎？", timeout: 1},
@@ -1124,8 +1110,7 @@ var scene = {
 		background: bg_school_girl_side,
 		text_color: "#4d4d4d",
 		story: [
-		"媽媽看著子曜說：「辛苦也是我們芷潔在辛苦，你們只要動動嘴巴說負責就好。",
-		"誰知道孩子生出來以後，你們跑去哪都不知道。」",
+		"媽媽看著子曜說：「辛苦也是我們芷潔在辛苦，你們只要動動嘴巴說負責就好。誰知道孩子生出來以後，你們跑去哪都不知道。」",	
 		],
 		btn_left: {
 			text: "繼續",
@@ -1161,19 +1146,8 @@ var scene = {
 		background: bg_school_teacher,
 		text_color: "#4d4d4d",
 		story: [
-		"老師打斷：「爸爸媽媽不要激動，還是我們問問看芷潔和子曜的想法？",
-		"芷潔你有什麼看法呢？」",
+		"老師打斷：「爸爸媽媽不要激動，還是我們問問看芷潔和子曜的想法？芷潔你有什麼看法呢？」",
 		],
-		btn_left: {
-			text: "繼續",
-			scene: 9114,
-		},
-	},
-	9114: {
-		description: "在學校-15",
-		background: bg_school_girl_side,
-		text_color: "#4d4d4d",
-		story: [""],
 		btn_left: {
 			text: "我....我不知道",
 			scene: 9115
@@ -1192,6 +1166,7 @@ var scene = {
 		background: bg_school_girl_dad,
 		text_color: "#4d4d4d",
 		story: [
+		"我：「...」",
 		"爸爸打斷我說：「還能怎麼樣？她現在應該要做的就是好好讀書考好大學。懷孕的是她又不是你兒子，就直接拿掉吧。」",
 		],
 		btn_left: {
@@ -1753,7 +1728,7 @@ var scene = {
 			scene: 99991,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},
@@ -1782,7 +1757,7 @@ var scene = {
 			scene: 99991,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},
@@ -1805,7 +1780,7 @@ var scene = {
 			scene: 99992,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},
@@ -1826,7 +1801,7 @@ var scene = {
 			scene: 99992,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},
@@ -1855,7 +1830,7 @@ var scene = {
 			scene: 99993,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},
@@ -1879,7 +1854,7 @@ var scene = {
 			scene: 99993,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},
@@ -1907,7 +1882,7 @@ var scene = {
 			scene: 99994,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},
@@ -1929,7 +1904,7 @@ var scene = {
 			scene: 99994,
 		},
 		btn_middle: {
-			text: "返回",
+			text: "再玩一次",
 			scene: 1001,
 		},
 	},

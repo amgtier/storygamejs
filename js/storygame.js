@@ -1,6 +1,11 @@
 MAX_STORY_PARAGRAPH = 3
 LINE_SKIP_TIMEOUT = false;
 var bgm_timeout;
+
+window.addEventListener("load", function() {
+    console.log("loaded")
+}, false); 
+
 class StoryGame {
 	constructor(game, scene){
 		this.screen = $("#game");
@@ -26,7 +31,7 @@ class StoryGame {
 		// GET params
 		var url = new URL(window.location.href);
 		var scene = url.searchParams.get("scene");
-		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 1001 : window.location.hash.substring(1, window.location.hash.length) : scene);
+		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 1000 : window.location.hash.substring(1, window.location.hash.length) : scene);
 
 		var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
 		var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
