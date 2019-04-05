@@ -66,7 +66,7 @@ var scene = {
 		background: cover,
 		story: [""],
 		btn_middle: {
-			text: "開始遊戲",
+			text: "loading",
 			scene: 1001,
 			class: "start-game",
 		},
@@ -426,7 +426,6 @@ var scene = {
 		text_color: "#4d4d4d",
 		story_date: "2018/10/1",
 		page_turn: true,
-		story_delay: 9,
 		story: [
 		"今天子曜帶我去看婦產科。",
 		"在進去診所之前，他給了我一包口罩，問我要不要戴？",
@@ -654,7 +653,6 @@ var scene = {
 	7102: {
 		description: "醫院-我不敢說-not connected",
 		background: bg_hospital_outside,
-		text_color: "#4d4d4d",
 		line: [
 			{type: "read", message: "LALALAL121234567898765432345678", timeout: 2},
 			{type: "read", message: "偉大交通大學偉大交通大學偉大交通大學偉大交通大學", timeout: 2},
@@ -870,7 +868,6 @@ var scene = {
 	8501: {
 		description: "在家-傳訊息",
 		background: bg_dinner_texting,
-		text_color: "#4d4d4d",
 		line: [
 			{type: "read", message: "我剛剛有努力試探一下了，我媽超可怕的，直接問我是不是懷孕了", timeout: 2},
 			{type: "read", message: "我知道我只差一步就可以把它說出來，但是我害怕還是不敢說。", timeout: 3},
@@ -911,7 +908,6 @@ var scene = {
 	8701: {
 		description: "在家-沈默不語",
 		background: bg_dinner_texting,
-		text_color: "#4d4d4d",
 		line: [
 			{type: "read", message: "我剛剛有努力試探一下了，", timeout: 2},
 			{type: "read", message: "我爸媽很在意我的功課。", timeout: 2},
@@ -942,7 +938,6 @@ var scene = {
 	8702: {
 		description: "在家-無法決定",
 		background: bg_dinner_texting,
-		text_color: "#4d4d4d",
 		line: [
 			{type: "received", message: "嗯，你還記得我之前跟你說過嗎？", timeout: 2},
 			{type: "read", message: "說過什麼？", timeout: 2},
@@ -961,7 +956,6 @@ var scene = {
 	8703: {
 		description: "在家-趕緊拿掉",
 		background: bg_dinner_texting,
-		text_color: "#4d4d4d",
 		line: [
 			{type: "read", message: "我想還是趁爸媽發現之前，趕緊把小孩拿掉吧。", timeout: 2},
 			{type: "received", message: "妳確定嗎？", timeout: 1},

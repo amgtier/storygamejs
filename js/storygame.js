@@ -3,6 +3,7 @@ LINE_SKIP_TIMEOUT = false;
 var bgm_timeout;
 
 window.addEventListener("load", function() {
+    $(".start-game").html("開始遊戲")
     console.log("loaded")
 }, false); 
 
@@ -16,8 +17,6 @@ class StoryGame {
 		this.prev_bg;
 		this.width;
 		this.height;
-		// this.backgrounds = {};
-		// this.raw_backgrounds = bgs;
 	}
 
 	start(){
