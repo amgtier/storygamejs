@@ -68,7 +68,7 @@ var scene = {
 		btn_middle: {
 			text: "loading",
 			// scene: 1001,
-			class: "start-game",
+			class: "loading",
 		},
 
 	},
