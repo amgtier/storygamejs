@@ -7,7 +7,6 @@ window.addEventListener("load", function() {
     $(".loading").addClass("start-game");
     game.btn_handler("#btn-2", {scene: 1001}, game);
     game.start_game_handler();
-    console.log("loaded")
 
 }, false); 
 
@@ -178,10 +177,8 @@ class StoryGame {
 	btn_handler(btn, actions, self) {
 		var scene = this.s;
 		// var render = this.render;
-		console.log(btn, actions, self)
 		$(btn).on("click", function(){
 			if (actions.scene != undefined) {
-				console.log("haha")
 				self.render(actions.scene);
 			}
 		});
