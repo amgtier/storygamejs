@@ -136,7 +136,11 @@ a:hover{
 	color: #254b5b;
 }
 @media (hover: none) {
-    a:hover { color: inherit; }
+    a:hover { color: #fff; }
+    .btn:hover{
+    	background: inherit;
+    	color: #fff;
+    }
 }
 
 #wrapper{
