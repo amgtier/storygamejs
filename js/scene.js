@@ -10,7 +10,7 @@ var slap = "./bgm/ok/slap.mp3"
 var cover = [{url: "./img/0.png"}];
 var cover1 = [{url: "./img/1.png"}];
 var bg_bathroom = [{url: "./img/2/01.png"}, {url: "./img/2/02.png", left: -1}];
-var bg_hospital_outside = [{url: "./img/3/01.png"}];
+var bg_hospital_outside = [{url: "./img/3/01.png", timeout: 2}, {url: "./img/3/02.png", timeout: 2}, {url: "./img/3/03.png", timeout: 2}, {url: "./img/3/04.png", timeout: 4}];
 var bg_hospital_in_on_lower = [{url: "./img/4/put_on/lower-01.png", timeout: 2}, {url: "./img/4/put_on/lower-02.png", timeout: 2}];
 var bg_hospital_in_on_raise = [{url: "./img/4/put_on/raise-01.png", timeout: 2}, {url: "./img/4/put_on/raise-02.png", left: 1, timeout: 2}];
 var bg_hospital_in_on_called = [{url: "./img/4/put_on/called-01.png", timeout: 2}, {url: "./img/4/put_on/called-02.png", timeout: 2}];
@@ -19,22 +19,22 @@ var bg_hospital_in_off_raise = [{url: "./img/4/put_off/raise-01.png", timeout: 2
 var bg_hospital_in_off_called = [{url: "./img/4/put_off/called-01.png", timeout: 2}, {url: "./img/4/put_off/called-02.png", timeout: 2}];
 var bg_hospital_in_doctor = [{url: "./img/5/01.png"}, {url: "./img/5/02.png"}];
 var bg_hospital_out_discuss = [{url: "./img/6/01.png"}];
-var bg_home_dinner = [{url: "./img/7/dinner/1-1.png"}, {url: "./img/7/dinner/1-2.png", left: 0.6, up: 0.3}, {url: "./img/7/dinner/2-1.png", left: 0.65, up: 0.6}, {url: "./img/7/dinner/2-2.png", left: 0.65, up: 0.6}, {url: "./img/7/dinner/3-1.png", left: 1, up: 0.2}, {url: "./img/7/dinner/3-2.png", left: 0.5, up: 0.6}];
+var bg_home_dinner = [{url: "./img/7/dinner/1-1.png"}, {url: "./img/7/dinner/2-1.png", left: 0.65, up: 0.6}, {url: "./img/7/dinner/3-1.png", left: 1, up: 0.2}];
 var bg_home_dinner_stopped = [{url: "./img/7/dinner_stopped/01.png"}, {url: "./img/7/dinner_stopped/02.png", left: 1}];
 var bg_dad_hit_table = [{url: "./img/7/dad_hit_table/03.png"}, {url: "./img/7/dad_hit_table/04.png", left: -1, up: -2}];
-var bg_dad_hit = [{url: "./img/7/dad_hit/06.png", timeout: 2}, {url: "./img/7/dad_hit/07.png", up: -0.5, timeout: 1}, {url: "./img/7/dad_hit/08.png", left: 0, timeout: 2}, {url: "./img/7/dad_hit/23.png", timeout: 2, end: true}];
+var bg_dad_hit = [{url: "./img/7/dad_hit/06.png", timeout: 2}, {url: "./img/7/dad_hit/07.png", up: -0.5, timeout: 3}, {url: "./img/7/dad_hit/08.png", left: 0, timeout: 3, end: true}];
 var bg_dinner_texting = [{url: "./img/8/01.png"}, {url: "./img/8/02.png"}];
 var bg_school_teacher2 = [{url: "./img/9/teacher-2.png"}];
 var bg_school_teacher = [{url: "./img/9/teacher.png"}];
 var bg_go_to_school = [{url: "./img/9/gs1.png", timeout: 1}, {url: "./img/9/gs2.png", timeout: 1}, {url: "./img/9/gs3.png", timeout: 1}];
-var bg_school_boy_side = [{url: "./img/9/boy-side.png"}];
+var bg_school_boy_side = [{url: "./img/9/boy-side.png", timeoiut: 2}, {url: "./img/9/boy-side.png", end: true}];
 var bg_school_boy_mom = [{url: "./img/9/boy-mom.png"}];
 var bg_school_girl = [{url: "./img/9/girl.png"}];
-var bg_school_girl_side = [{url: "./img/9/girl-side.png"}];
+var bg_school_girl_side = [{url: "./img/9/girl-side.png", timeoute: 2}, {url: "./img/9/girl-side.png", end: true}];
 var bg_school_girl_dad = [{url: "./img/9/girl-dad.png"}];
 var bg_school_girl_angry = [{url: "./img/9/girl-angry.png"}];
-var bg_clinic_raise = [{url: "./img/10/12.png", timeout: 2.5}, {url: "./img/10/13.png", end: true}];
-var bg_clinic = [{url: "./img/10/13.png"}, {url: "./img/10/14.png"}];
+var bg_clinic_raise = [{url: "./img/10/12.png", timeout: 2.5}, {url: "./img/10/13.png", up: -1, left: 0.5, timeout: 2.5}, {url: "./img/10/14.png", left: 1.5, up: 0.5, timeout: 2.5}, {url: "./img/10/15.png", left: 1.5, end: true}];
+var bg_clinic = [{url: "./img/10/14.png", left: 1.5, up: 0.5, timeout: 2.5}, {url: "./img/10/15.png", left: 1.5}];
 var bg_get_med = [{url: "./img/12/get-med.png"}];
 var bg_os = [{url: "./img/12/os.png"}]
 var bg_get_med_dispose = [{url: "./img/12/get-med.png", timeout: 2}, {url: "./img/16/dispose.png", end: true}];
@@ -125,6 +125,7 @@ var scene = {
 	2002: {
 		description: "在廁所-直接打電話給男友",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "outgoing dialing", timeout: 1},
 		{type: "incoming cancelled", timeout: 5},
@@ -157,6 +158,7 @@ var scene = {
 	2003: {
 		description: "在廁所-line",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?", timeout: 0},
 		{type: "sent", message: "發生一件嚴重的事", timeout: 3},
@@ -180,6 +182,7 @@ var scene = {
 	2004: {
 		description: "在廁所-line",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -217,6 +220,7 @@ var scene = {
 	2005: {
 		description: "在廁所-line",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -289,6 +293,7 @@ var scene = {
 	2008: {
 		description: "在廁所-再驗一次後-打電話",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "outgoing dialing", timeout: 1},
 		{type: "incoming cancelled", timeout: 5},
@@ -321,6 +326,7 @@ var scene = {
 	2009: {
 		description: "在廁所-再驗一次後-line",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?", timeout: 3},
 		{type: "sent", message: "發生一件嚴重的事", timeout: 4},
@@ -344,6 +350,7 @@ var scene = {
 	2010: {
 		description: "在廁所-再驗一次後-line",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -383,6 +390,7 @@ var scene = {
 	2011: {
 		description: "在廁所-再驗一次後-打電話",
 		background: bg_bathroom, 
+		line_header: "曜❤️",
 		line: [
 		{type: "sent", message: "欸欸 在嗎?"},
 		{type: "sent", message: "發生一件嚴重的事"},
@@ -426,19 +434,12 @@ var scene = {
 		story_date: "2018/10/1",
 		page_turn: true,
 		story_delay: 9,
-		// btn_delay: 1,
 		story: [
 		"今天子曜帶我去看婦產科。",
 		"在進去診所之前，他給了我一包口罩，問我要不要戴？",
 		"我當下愣住了，不知道他給我口罩的用意是什麼？",
 		"「我想你可能會怕遇到認識的人，所以想說你要不要戴口罩。如果你覺得有關係，那我也跟你一起戴，如果你覺得沒關係，我們就一起不戴。看你啦！」我都不知道原來他有那麼貼心",
 		"看著手裡的口罩，我決定",
-		],
-		image_story: [
-			{url: "./img/3/01.png", timeout: 2}, 
-			{url: "./img/3/02.png", timeout: 2}, 
-			{url: "./img/3/03.png", timeout: 2}, 
-			{url: "./img/3/04.png", timeout: 2}
 		],
 		btn_left: {
 			text: "戴上口罩",
@@ -474,9 +475,7 @@ var scene = {
 		static_image: [
 			{url: "./img/4/put_on/mask.png", up: 1},
 			{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
-		],
-		bgm: [
-			{url: dong, timeout: 8},
+			{url: "./img/4/01.png", left: 0, up: 0},
 		],
 		btn_left: {
 			text: "繼續",
@@ -639,14 +638,17 @@ var scene = {
 	7101: {
 		description: "在家-我不敢說",
 		background: bg_dinner_texting,
-		text_color: "#4d4d4d",
+		line_header: "曜❤️",
 		line: [
-			{type: "read", message: "但是我們家很保守，我...我不敢說", timeout: 2},
+			// {type: "read", message: "但是我們家很保守，我...我不敢說", timeout: 2},
 			{type: "received", message: "那小孩怎麼辦？你想要生下來還是？", timeout: 3},
 			{type: "read", message: "我..我好混亂，不知道該怎麼辦。你呢？你覺得怎麼辦？", timeout: 3},
-			{type: "received", message: "我覺得我們只是個高中生，沒有能力照顧自己，更何況去照顧小孩。", timeout: 4},
-			{type: "received", message: "但是我覺得還是尊重你的想法，畢竟辛苦的是妳。", timeout: 2},
-			{type: "received", message: "如果你想生，我會負起責任努力賺錢 ; 如果你不想生，我也會陪你。", timeout: 3},
+			{type: "received", message: "我覺得我們只是個高中生", timeout: 4},
+			{type: "received", message: "沒有能力照顧自己，更何況去照顧小孩。", timeout: 4},
+			{type: "received", message: "但是我覺得還是尊重你的想法", timeout: 2},
+			{type: "received", message: "畢竟辛苦的是妳。", timeout: 2},
+			{type: "received", message: "如果你想生，我會負起責任努力賺錢 ", timeout: 3},
+			{type: "received", message: "如果你不想生，我也會陪你。", timeout: 3},
 			{type: "read", message: "嗯，謝謝你。", timeout: 2},
 		],
 		btn_upper: {
@@ -662,6 +664,7 @@ var scene = {
 		description: "醫院-我不敢說-not connected",
 		background: bg_hospital_outside,
 		text_color: "#4d4d4d",
+		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "LALALAL121234567898765432345678", timeout: 2},
 			{type: "read", message: "偉大交通大學偉大交通大學偉大交通大學偉大交通大學", timeout: 2},
@@ -759,10 +762,25 @@ var scene = {
 		background: bg_dad_hit_table,
 		text_color: "#4d4d4d",
 		story: [
-
 		"「嗯...我...我懷孕了」",
 		"爸爸拍桌：「妳說什麼！」",
 		"媽媽開始質問我：「妳在跟我開玩笑嗎？妳不是都在讀書嗎？",
+		],
+		bgm: [{url: slap_table}],
+		btn_left: {
+			text: "繼續",
+ 			scene: 81031,
+		},
+		btn_center: {
+			text: "「難道就你們大人才懂愛嗎？」",
+ 			scene: 8301,
+		},
+	},
+	81031: {
+		description: "在家-我有在讀-我懷孕了",
+		background: bg_dad_hit_table,
+		text_color: "#4d4d4d",
+		story: [
 		"妳怎麼有時間把自己的肚子搞大？",
 		"妳是不是騙我們要去圖書館，結果跑去亂搞？」",
 		"「我怎麼會有你這種女兒，臉都被你丟光了！」爸爸的臉上充滿失望。",
@@ -778,7 +796,6 @@ var scene = {
 		"「你在說什麼？！他是我男友欸，我也有責任你不要都怪他」",
 		"媽媽鄙視的眼神看著我：「哼才多大就交男朋友，你們知道什麼叫愛嗎？現在都搞出人命了」",
 		],
-		bgm: [{url: slap_table}],
 		btn_upper: {
 			text: "「對不起，我不是故意的。」",
  			scene: 8201,
@@ -836,6 +853,7 @@ var scene = {
 		description: "在家-對不起，我不是故意的",
 		background: bg_dad_hit,
 		text_color: "#4d4d4d",
+		story_delay: 3,
 		story: [
 			"爸爸一巴掌過來：「妳還敢頂嘴？給我回去房間好好反省！」",
 			"「說話就好好說話，怎麼還動手呢？」媽媽嚇了一跳。",
@@ -863,6 +881,7 @@ var scene = {
 		description: "在家-傳訊息",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
+		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "我剛剛有努力試探一下了，我媽超可怕的，直接問我是不是懷孕了", timeout: 2},
 			{type: "read", message: "我知道我只差一步就可以把它說出來，但是我害怕還是不敢說。", timeout: 3},
@@ -904,6 +923,7 @@ var scene = {
 		description: "在家-沈默不語",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
+		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "我剛剛有努力試探一下了，", timeout: 2},
 			{type: "read", message: "我爸媽很在意我的功課。", timeout: 2},
@@ -935,6 +955,7 @@ var scene = {
 		description: "在家-無法決定",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
+		line_header: "曜❤️",
 		line: [
 			{type: "received", message: "嗯，你還記得我之前跟你說過嗎？", timeout: 2},
 			{type: "read", message: "說過什麼？", timeout: 2},
@@ -954,6 +975,7 @@ var scene = {
 		description: "在家-趕緊拿掉",
 		background: bg_dinner_texting,
 		text_color: "#4d4d4d",
+		line_header: "曜❤️",
 		line: [
 			{type: "read", message: "我想還是趁爸媽發現之前，趕緊把小孩拿掉吧。", timeout: 2},
 			{type: "received", message: "妳確定嗎？", timeout: 1},
@@ -1298,7 +1320,7 @@ var scene = {
 		},
 		btn_center: {
 			text: "「沒關係，就拿掉吧」",
-			scene: 10105,
+			scene: 99992,
 		},
 		btn_lower: {
 			text: "「我還想再聽一下生下小孩的注意事項」",
@@ -1319,7 +1341,7 @@ var scene = {
 		],
 		btn_upper: {
 			text: "「嗯，我想生下來」",
-			scene: 10104,
+			scene: 99991,
 		},
 		btn_center: {
 			text: "「沒關係，就拿掉吧」",
@@ -1459,7 +1481,7 @@ var scene = {
 		story: [
 			"吃完藥沒多久我開始流血，我感覺到肚子劇烈地收縮。",
 			"我坐在馬桶上，因為肚子劇烈絞痛，全身不停地冒冷汗，我以為我要昏倒在廁所了。",
-			"這時筱萱來(摳摳摳)敲門：「芷潔你怎麼了，怎麼在廁所那麼久不出來？」",
+			"這時筱萱來敲門：「芷潔你怎麼了，怎麼在廁所那麼久不出來？」",
 		],
 		btn_left: {
 			text: "繼續",
@@ -1489,7 +1511,6 @@ var scene = {
 			"我發現衛生棉上有好大一塊東西，我不知道是什麼，也不太敢看。",
 			"是血塊嗎？還是...？",
 			"我趕緊用衛生棉把它包起來",
-			"（亂畫~*&*(&*&$^$#%@!!＆％＄＃）",
 		],
 		btn_left: {
 			text: "繼續",
@@ -1717,6 +1738,14 @@ var scene = {
 			"對此兩人大吵一架，芷潔抱怨他錯過寶寶的成長，子曜抱怨她不懂在外打拼的辛苦。",
 			"因為小孩的事，夫妻之間時常有爭吵，鬧得不是很愉快。",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99991,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 	99912: {
 		description: "生結局-12",
@@ -1738,6 +1767,14 @@ var scene = {
 			"看著自己的小孩對著別人叫媽媽，芷潔明白自己早已錯過孩子的成長。",
 			"心痛地留下眼淚，轉頭又回去工廠繼續工作",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99991,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 	99921: {
 		description: "生結局-21",
@@ -1753,6 +1790,14 @@ var scene = {
 			"沒有人知道芷潔曾經發生過什麼，這四年她和子曜也沒再聯絡。",
 			"帶著這份回憶，讓她更加努力生活，對任何事情也都比以往更加謹慎。",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99992,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 	99922: {
 		description: "生結局-22",
@@ -1766,6 +1811,14 @@ var scene = {
 			"現在他們正打算要生一個小孩，相比高中時，他們成熟不少。",
 			"如今他們一起承擔一起面對，一起開心地迎接新生命的到來。",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99992,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 	99931: {
 		description: "生結局-31",
@@ -1787,6 +1840,14 @@ var scene = {
 			"儘管捨不得，芷潔還是得回到學校繼續考大學。",
 			"或許在不久的將來芷潔會是一位新鮮的大學生，所有美好的事物都在等待著她。",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99993,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 	99932: {
 		description: "生結局-32",
@@ -1803,6 +1864,14 @@ var scene = {
 			"慶幸的是，一年後芷潔的生活算是回到正軌，下個月就是大考了。",
 			"或許在不久的將來芷潔會是一位新鮮的大學生，所有美好的事物都在等待著她。",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99993,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 	99941: {
 		description: "生結局-41",
@@ -1823,6 +1892,14 @@ var scene = {
 			"小翰在外縣市賺錢養家，留下芷潔一個人面對來自四面八方的冷嘲熱諷，很是辛苦。",
 			"然而對芷潔來說，不管遇到什麼問題，只要小孩能快樂幸福，再辛苦也是值得的。",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99994,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 	99942: {
 		description: "生結局-42",
@@ -1837,5 +1914,13 @@ var scene = {
 			"儘管芷潔又回到學校上課，走在路上還是很多人都對她指指點點。",
 			"她現在唯一想做的是好好努力考大學，到一個沒人認識她的地方開始新的生活。",
 		],
+		btn_left: {
+			text: "觀看其他結局",
+			scene: 99994,
+		},
+		btn_middle: {
+			text: "返回",
+			scene: 1001,
+		},
 	},
 }

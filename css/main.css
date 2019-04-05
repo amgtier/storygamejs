@@ -31,6 +31,7 @@ body::after {
     url("./../img/3/02.png")
     url("./../img/3/03.png")
     url("./../img/3/04.png")
+    url("./../img/4/01.png")
     url("./../img/4/put_on/called-01.png")
     url("./../img/4/put_on/called-02.png")
     url("./../img/4/put_on/lower-01.png")
@@ -68,16 +69,19 @@ body::after {
     url("./../img/9/boy-mom.png")
     url("./../img/9/boy-dad.png")
     url("./../img/9/boy-side.png")
+    url("./../img/9/boy-side2.png")
     url("./../img/9/girl-angry.png")
     url("./../img/9/girl-dad.png")
     url("./../img/9/girl-mom.png")
     url("./../img/9/girl.png")
     url("./../img/9/girl-side.png")
+    url("./../img/9/girl-side2.png")
     url("./../img/9/teacher-2.png")
     url("./../img/9/teacher.png")
     url("./../img/10/12.png")
     url("./../img/10/13.png")
     url("./../img/10/14.png")
+    url("./../img/10/15.png")
     url("./../img/12/os.png")
     url("./../img/12/get-med.png")
 	url("./../img/12/os.png")
@@ -308,4 +312,11 @@ a:hover{
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.line-header {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #fff;
 }

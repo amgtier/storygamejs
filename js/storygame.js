@@ -154,7 +154,6 @@ class StoryGame {
 
 	start_game_handler() {
 		$(".start-game").on("click", function(){
-			console.log($("audio#bg"))
 			$("audio#bg")[0].play();
 		});
 	}
@@ -175,10 +174,7 @@ class StoryGame {
 	btn_handler(btn, actions, self) {
 		var scene = this.s;
 		// var render = this.render;
-		console.log("hello world")
 		$(btn).on("click", function(){
-			console.log("hello")
-			console.log(actions)
 			if (actions.scene != undefined) {
 				self.render(actions.scene);
 			}
@@ -285,6 +281,11 @@ class StoryGame {
 		var timeout_count = 0;
 		var row;
 		var self = this;
+		if (s.line_header != undefined){
+			var line_header = $("<div>", {text: s.line_header, class: "line-header"})
+			line.css("max-height", "200px");
+		}
+		$(this.screen).append(line_header);
 		$(this.screen).append(line);
 		$.each(s.line, function(i, j){
 			if (j.timeout == undefined) {
@@ -294,9 +295,8 @@ class StoryGame {
 			setTimeout(function(){
 				if (j.type == "read") {
 					/* play audio */
+					$("audio#line-call")[0].currentTime = 0;
 					$("audio#line-read")[0].play();
-					console.log("audio triggered")
-
 					row = $("<p>", {class: "line line-right text-right"});
 					row.append($("<span>", {class: "line-read", text: "已讀"}));
 					if (j.message != undefined){
@@ -319,9 +319,8 @@ class StoryGame {
 				}
 				else if (j.type == "read-above") {
 					/* play audio */
+					$("audio#line-call")[0].currentTime = 0;
 					$("audio#line-read")[0].play();
-					console.log("audio triggered")
-
 					$.each(line.find("p.line-right"), function(k, v){
 						if ($(v).find("span.line-read").length == 0){
 							$(v).prepend($("<span>", {class: "line-read", text: "已讀"}));
@@ -369,13 +368,12 @@ class StoryGame {
 					line.append(row);
 				}
 				else if (j.type == "outgoing dialing") {
+					$("audio#line-call")[0].currentTime = 0;
 					$("audio#line-call")[0].play();
 					setTimeout(function(){
 						$("audio#line-call")[0].currentTime = 0;
 						$("audio#line-call")[0].play();
 					}, 3000)
-					console.log("audio triggered")
-
 					row = $("<p>", {class: "line line-right text-right"});
 					row.append($("<span>", {class: "line-msg line-call", text: "撥打中..."}));
 					line.append(row);
@@ -507,10 +505,16 @@ class StoryGame {
 				self = this;
 				setTimeout(function(){
 					$(self.screen).append(btns);
+					self.btn_handler("#btn-1", s.btn_left, self.self);
+					self.btn_handler("#btn-2", s.btn_middle, self.self);
+					self.btn_handler("#btn-3", s.btn_right, self.self);
 				}, s.btn_delay * 1000);
 			}
 			else{
 				$(this.screen).append(btns);
+				this.btn_handler("#btn-1", s.btn_left, this.self);
+				this.btn_handler("#btn-2", s.btn_middle, this.self);
+				this.btn_handler("#btn-3", s.btn_right, this.self);
 			}
 
 			if (s.btn_left != undefined && s.btn_left.class != undefined){
@@ -518,7 +522,6 @@ class StoryGame {
 			}
 			if (s.btn_middle != undefined && s.btn_middle.class != undefined){
 				$("#btn-2").addClass(s.btn_middle.class);
-				console.log($("#btn-2"))
 			}
 			if (s.btn_right != undefined && s.btn_right.class != undefined){
 				$("#btn-3").addClass(s.btn_right.class);
@@ -535,9 +538,6 @@ class StoryGame {
 					"border-color": s.text_color,
 				});
 			}
-			this.btn_handler("#btn-1", s.btn_left, this.self);
-			this.btn_handler("#btn-2", s.btn_middle, this.self);
-			this.btn_handler("#btn-3", s.btn_right, this.self);
 		}
 		else if (s.btn_upper != undefined || s.btn_center != undefined || s.btns_lower != undefined) {
 			var btns = $("<div>", {class: "btn-wrapper"});
@@ -566,6 +566,9 @@ class StoryGame {
 				}).appendTo(btns);
 			}
 			$(this.screen).append(btns);
+			this.btn_handler("#btn-4", s.btn_upper, this.self);
+			this.btn_handler("#btn-5", s.btn_center, this.self);
+			this.btn_handler("#btn-6", s.btn_lower, this.self);
 			if (s.btn_upper != undefined && s.btn_upper.class != undefined){
 				$("#btn-4").addClass(s.btn_upper.class);
 			}
@@ -588,9 +591,6 @@ class StoryGame {
 					"border-color": s.text_color,
 				});
 			}
-			this.btn_handler("#btn-4", s.btn_upper, this.self);
-			this.btn_handler("#btn-5", s.btn_center, this.self);
-			this.btn_handler("#btn-6", s.btn_lower, this.self);
 		}
 	}
 
@@ -598,7 +598,6 @@ class StoryGame {
 		var btns = $("<div>", {class: "btn-wrapper"});
 		var self = this;
 		$.each(s.img_btn, function(i, j){
-			console.log(j[0], j[1])
 			let k = $("<img>", {
 				src: j[0], 
 				class: "img-btn"
@@ -613,8 +612,6 @@ class StoryGame {
 	}
 	
 	render_audio(s){
-		console.log(s.audio)
-		// var audio = $("<audio>", {})
 	}
 	
 	render_static_image(s){
