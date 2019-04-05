@@ -41,4 +41,5 @@
 .popup > .game{
 	margin-left: calc( (100% - 374px) / 2);
 	margin-top: 30px;
+	border: none;
 }
