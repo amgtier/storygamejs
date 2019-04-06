@@ -3,10 +3,10 @@ LINE_SKIP_TIMEOUT = false;
 var bgm_timeout;
 
 window.addEventListener("load", function() {
-    $(".loading").html("開始遊戲");
-    $(".loading").addClass("start-game");
-    game.btn_handler("#btn-2", {scene: 1001}, game);
-    game.start_game_handler();
+    // $(".loading").html("開始遊戲");
+    // $(".loading").addClass("start-game");
+    // game.btn_handler("#btn-2", {scene: 1001}, game);
+    // game.start_game_handler();
 
 }, false); 
 
@@ -20,6 +20,7 @@ class StoryGame {
 		this.prev_bg;
 		this.width;
 		this.height;
+		this.bgm;
 	}
 
 	start(){
@@ -34,13 +35,14 @@ class StoryGame {
 		var url = new URL(window.location.href);
 		var scene = url.searchParams.get("scene");
 		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 1000 : window.location.hash.substring(1, window.location.hash.length) : scene);
-
+		this.start_game_handler();
 		var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
-		var audio_line_read = $("<audio>", {src: line_read, id: "line-read"});
-		var audio_line_call = $("<audio>", {src: line_call, id: "line-call"});
+		var audio_line_read = $("<audio>", {src: line_read, id: "line-read", volume: 0.8,});
+		var audio_line_call = $("<audio>", {src: line_call, id: "line-call", volume: 0.8,});
 		$("body").prepend(audio_bg);
 		$("body").prepend(audio_line_read);
 		$("body").prepend(audio_line_call);
+		this.bgm = audio_bg;
 	}
 
 	preload_all_img(){
@@ -150,7 +152,7 @@ class StoryGame {
 			self = this;
 			setTimeout(function(){
 				self.render_bgm(s);
-			}, 2000);
+			}, 500);
 		}
 		this.start_game_handler();
 	}
@@ -174,10 +176,13 @@ class StoryGame {
 		$(this.screen).css("padding-right", "38px");
 	}
 
-	btn_handler(btn, actions, self) {
+	btn_handler(btn, actions, self, noclick=false) {
 		var scene = this.s;
-		// var render = this.render;
 		$(btn).on("click", function(){
+			var bgm = $("audio#bg")[0];
+			if (bgm.paused && !$(this).hasClass("loading")){
+				bgm.play();
+			}
 			if (actions.scene != undefined) {
 				self.render(actions.scene);
 			}
@@ -298,7 +303,7 @@ class StoryGame {
 			setTimeout(function(){
 				if (j.type == "read") {
 					/* play audio */
-					$("audio#line-call")[0].currentTime = 0;
+					$("audio#line-read")[0].currentTime = 0;
 					$("audio#line-read")[0].play();
 					row = $("<p>", {class: "line line-right text-right"});
 					row.append($("<span>", {class: "line-read", text: "已讀"}));
@@ -322,7 +327,7 @@ class StoryGame {
 				}
 				else if (j.type == "read-above") {
 					/* play audio */
-					$("audio#line-call")[0].currentTime = 0;
+					$("audio#line-read")[0].currentTime = 0;
 					$("audio#line-read")[0].play();
 					$.each(line.find("p.line-right"), function(k, v){
 						if ($(v).find("span.line-read").length == 0){
@@ -640,7 +645,11 @@ class StoryGame {
 		console.log("[bgm playing]")
 		self = this;
 		$.each(s.bgm, function(){
- 			var audio = $("<audio>", {src: this.url, class: "audio", volume: 0.2});
+			var audio = $("audio[src='"+this.url+"']");
+			console.log(audio)
+ 			if (audio.length == 0){
+ 				var audio = $("<audio>", {src: this.url, class: "audio", volume: 0.8});
+ 			}
 			if (s.loop != undefined && s.loop == true){
 				audio.attr("loop", "loop");
 			}
@@ -650,7 +659,7 @@ class StoryGame {
 				self.bgm_recursive(audio, this.timeout);
 			}
 			else{
-				// audio.trigger("play");
+				audio[0].currentTime = 0;
 				audio[0].play();
 			}
 		});
@@ -658,7 +667,6 @@ class StoryGame {
 
 	bgm_recursive(audio, timeout) {
 		self = this;
-		// audio.trigger("play");
 		audio[0].play();
 		bgm_timeout = setTimeout(function(){
 			self.bgm_recursive(audio, timeout);
