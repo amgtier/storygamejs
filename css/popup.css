@@ -30,7 +30,7 @@
     margin-top: calc((100vh - 667px * 0.9)/2);
     position: absolute;
     color: #fff;
-    font-size: 40px;
+    font-size: 25px;
     text-align: right;
     z-index: 10;
 }

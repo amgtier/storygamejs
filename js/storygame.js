@@ -2,13 +2,12 @@ MAX_STORY_PARAGRAPH = 3
 LINE_SKIP_TIMEOUT = false;
 var bgm_timeout;
 
-window.addEventListener("load", function() {
+// window.addEventListener("load", function() {
     // $(".loading").html("開始遊戲");
     // $(".loading").addClass("start-game");
     // game.btn_handler("#btn-2", {scene: 1001}, game);
     // game.start_game_handler();
-
-}, false); 
+// }, false); 
 
 class StoryGame {
 	constructor(game, scene){
@@ -37,11 +36,13 @@ class StoryGame {
 		this.render((scene == undefined) ? (window.location.hash.length == 0) ? 1000 : window.location.hash.substring(1, window.location.hash.length) : scene);
 		this.start_game_handler();
 		var audio_bg = $("<audio>", {src: bg_audio, id: "bg", volume: 0.2, loop: "loop"});
-		var audio_line_read = $("<audio>", {src: line_read, id: "line-read", volume: 0.8,});
+		var audio_line_read = $("<audio>", {src: line_read, id: "line-read", volume: 1,});
 		var audio_line_call = $("<audio>", {src: line_call, id: "line-call", volume: 0.8,});
+		var audio_line_call_end = $("<audio>", {src: line_call_end, id: "line-call-end", volume: 0.8,});
 		$("body").prepend(audio_bg);
 		$("body").prepend(audio_line_read);
 		$("body").prepend(audio_line_call);
+		$("body").prepend(audio_line_call_end);
 		this.bgm = audio_bg;
 	}
 
@@ -190,6 +191,10 @@ class StoryGame {
 	}
 
 	render_background(bg) {
+                if (typeof bg == "string"){
+                    $(this.screen).css("background", bg);
+		    return;
+                }
 		if (bg.length == undefined || bg.length == 1) {
 			if (bg.length == 1){
 				bg = bg[0];
@@ -390,6 +395,8 @@ class StoryGame {
 					row = $("<p>", {class: "line line-right text-right"});
 					row.append($("<span>", {class: "line-msg line-call", text: "取消通話"}));
 					line.append(row);
+					$("audio#line-call-end")[0].currentTime = 0;
+					$("audio#line-call-end")[0].play();
 				}
 				else if (j.type == "incoming dialing") {
 					row = $("<p>", {class: "line line-left text-left"});
@@ -400,6 +407,8 @@ class StoryGame {
 					row = $("<p>", {class: "line line-left text-left"});
 					row.append($("<span>", {class: "line-msg line-call", text: "取消通話"}));
 					line.append(row);
+					$("audio#line-call-end")[0].currentTime = 0;
+					$("audio#line-call-end")[0].play();
 				}
 				if (line[0].scrollHeight < 240 && line.height() > 170) {
 					line.css("top", parseFloat(line.css("top"))-row.height()+"px");

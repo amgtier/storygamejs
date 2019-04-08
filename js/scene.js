@@ -1,6 +1,7 @@
 var bg_audio = "./bgm/ok/bg.mp3"
 var line_read = "./bgm/ok/line_read.mp3"
 var line_call = "./bgm/ok/line_call.mp3"
+var line_call_end = "./bgm/ok/line_call_end.mp3"
 var dong = "./bgm/ok/dongdong.mp3"
 var amb_siren = "./bgm/ok/ambulance.mp3"
 var write = "./bgm/ok/write.mp3"
@@ -20,8 +21,8 @@ var bg_hospital_in_off_called = [{url: "./img/4/put_off/called-01.png", timeout:
 var bg_hospital_in_doctor = [{url: "./img/5/01.png"}, {url: "./img/5/02.png"}];
 var bg_hospital_out_discuss = [{url: "./img/6/01.png"}];
 var bg_home_dinner = [{url: "./img/7/dinner/1-1.png"}, {url: "./img/7/dinner/2-1.png", left: 0.65, up: 0.6}, {url: "./img/7/dinner/3-1.png", left: 1, up: 0.2}];
-var bg_home_dinner_stopped = [{url: "./img/7/dinner_stopped/01.png"}, {url: "./img/7/dinner_stopped/02.png", left: 1}];
-var bg_dad_hit_table = [{url: "./img/7/dad_hit_table/03.png"}, {url: "./img/7/dad_hit_table/04.png", left: -1, up: -2}];
+var bg_home_dinner_stopped = [{url: "./img/7/dinner_stopped/01.png"}];
+var bg_dad_hit_table = [{url: "./img/7/dad_hit_table/03.png"}];
 var bg_dad_hit = [{url: "./img/7/dad_hit/06.png", timeout: 2}, {url: "./img/7/dad_hit/07.png", up: -0.5, timeout: 3}, {url: "./img/7/dad_hit/08.png", left: 0, timeout: 3, end: true}];
 var bg_dinner_texting = [{url: "./img/8/01.png"}, {url: "./img/8/02.png"}];
 var bg_school_teacher2 = [{url: "./img/9/teacher-2.png"}];
@@ -34,7 +35,7 @@ var bg_school_girl_side = [{url: "./img/9/girl-side.png", timeoute: 2}, {url: ".
 var bg_school_girl_dad = [{url: "./img/9/girl-dad.png"}];
 var bg_school_girl_angry = [{url: "./img/9/girl-angry.png"}];
 var bg_clinic_raise = [{url: "./img/10/12.png", timeout: 2.5}, {url: "./img/10/13.png", up: -1, left: 0.5, timeout: 2.5}, {url: "./img/10/14.png", left: 1.5, up: 0.5, timeout: 2.5}, {url: "./img/10/15.png", left: 1.5, end: true}];
-var bg_clinic = [{url: "./img/10/14.png", left: 1.5, up: 0.5, timeout: 2.5}, {url: "./img/10/15.png", left: 1.5}];
+var bg_clinic = [{url: "./img/10/14.png", up: -1, timeout: 2.5}, {url: "./img/10/15.png", up: -1.5}];
 var bg_get_med = [{url: "./img/12/get-med.png"}];
 var bg_os = [{url: "./img/12/os.png"}]
 var bg_get_med_dispose = [{url: "./img/12/get-med.png", timeout: 2}, {url: "./img/16/dispose.png", end: true}];
@@ -43,6 +44,7 @@ var bg_before_ask = [{url: "./img/16/7.png"}]
 var bg_ask = [{url: "./img/17/ask.png"}]
 var bg_angry = [{url: "./img/17/angry.png"}]
 var bg_search = [{url: "./img/12/search-0.png", timeout: 1}, {url: "./img/12/search-1.png", timeout: 1}, {url: "./img/12/search-2.png", timeout: 0.3}, {url: "./img/12/search-3.png", timeout: 0.3}, {url: "./img/12/search-4.png", timeout: 0.3, end:true}, ];
+var bg_search2 = [{url: "./img/12/search-4.png"}, ];
 var bg_take_med = [{url: "./img/13/take-med1.png", timeout: 5}, {url: "./img/13/take-med2.png", timeout: 5, dissolve: 2}, {url: "./img/13/take-med3.png", dissolve: 2, end: true}];
 var bg_take_med_1 = [{url: "./img/13/take-med1.png"}];
 var bg_take_med_2 = [{url: "./img/13/take-med2.png"}];
@@ -109,7 +111,7 @@ var scene = {
 		story: ["我懷孕了？！",
 		"這不可能...明明做好保護措施了",
 		"我怎麼可能懷孕？",
-		"我怎麼可能懷孕？",
+		"我怎麼可以懷孕？",
 		"但是驗孕棒上面的確是兩條線，我該怎麼辦？",
 		"要不要先跟卓子曜說啊...他如果知道這件事會有什麼反應？",
 		"啊也有可能是驗孕棒不準，還是要再驗一次看看？",],
@@ -273,6 +275,7 @@ var scene = {
 	},
 	2007 : {
 		description: "再驗一次-訊息前",
+		story_delay: 4,
 		story: [
 		"沒有意外還是兩條線，我真的懷孕了。",
 		],
@@ -451,20 +454,70 @@ var scene = {
 		story: [
 		"「噹噹～」掛在門把上的鈴鐺，讓所有等待看診的人，抬頭看了我一眼。",
 		"那一刻，我很慶幸我戴上了口罩。我趕緊找個位置坐下。",
-		"--",
 		"等待看診的期間，我默默觀察周圍的一切。",
+		],
+		static_image: [
+			{url: "./img/4/put_on/mask.png", up: 1},
+			{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
+			{url: "./img/4/01.png", left: 0, up: 0},
+		],
+		bgm: [
+			{url: dong},
+		],
+		btn_left: {
+			text: "繼續",
+ 			scene: 4002,
+		},
+	},
+	4002: {
+		description: "在醫院內低頭",
+		background: bg_hospital_in_on_lower,
+		text_color: "#4d4d4d",
+		story: [
 		"電視正在報導印尼發生海嘯，死傷慘重。",
 		"坐在我對面的女生腹部微微隆起，牽著那個男生的手，臉上滿是笑容。",
 		"這時我和一個女生對到眼，隨即避開視線，她和我一樣帶著口罩，坐在另一個角落。",
-
+		],
+		static_image: [
+			{url: "./img/4/put_on/mask.png", up: 1},
+			{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
+			{url: "./img/4/01.png", left: 0, up: 0},
+		],
+		btn_left: {
+			text: "繼續",
+ 			scene: 4003,
+		},
+	},
+	4003: {
+		description: "在醫院內低頭",
+		background: bg_hospital_in_on_lower,
+		text_color: "#4d4d4d",
+		story: [
 		"「噹噹～」又有人走進診所，我連忙低下頭，深怕被認出來。",
 		"啊對齁我有戴口罩，但我下意識地還是想躲起來。",
 		"其實我也害怕，健保卡上會不會留紀錄，絕對不能被爸媽發現。",
-
+		],
+		static_image: [
+			{url: "./img/4/put_on/mask.png", up: 1},
+			{url: "./img/4/put_on/preg-1.png", left: 2, up: 0},
+			{url: "./img/4/01.png", left: 0, up: 0},
+		],
+		bgm: [
+			{url: dong},
+		],
+		btn_left: {
+			text: "繼續",
+ 			scene: 4004,
+		},
+	},
+	4004: {
+		description: "在醫院內低頭",
+		background: bg_hospital_in_on_lower,
+		text_color: "#4d4d4d",
+		story: [
 		"昨天晚上我根本睡不著，我不斷在想我怎麼會懷孕？我該怎麼辦？",
 		"我不知道這件事被爸媽或是老師同學知道後，他們會怎麼看我？",
-		"一想到父母對我失望的表情，甚至同學們在背後指指點點，卻在我面前裝沒事。",
-		"沒事，想到就很無力",
+		"一想到父母對我失望的表情，甚至同學們在背後指指點點，卻在我面前裝沒事，想到就很無力",
 		],
 		static_image: [
 			{url: "./img/4/put_on/mask.png", up: 1},
@@ -664,7 +717,7 @@ var scene = {
 			"「那小孩怎麼辦？妳想要生下來還是？」子曜擔心地問。",
 			"「我..我好混亂，不知道該怎麼辦。你呢？你覺得怎麼辦？」",
 			"",
-			"「我覺得我們只是個高中生，沒有能力照顧自己，更何況去照顧小孩。但是我覺得還是尊重妳的想法，畢竟辛苦的是妳。如果妳想生，我會負起責任努力轉錢 ; 如果妳不想生，我也會陪妳。」看來他已經好好想過這個問題了。",
+			"「我覺得我們只是個高中生，沒有能力照顧自己，更何況去照顧小孩。但是我覺得還是尊重妳的想法，畢竟辛苦的是妳。如果妳想生，我會負起責任努力賺錢 ; 如果妳不想生，我也會陪妳。」看來他已經好好想過這個問題了。",
 			"「嗯，謝謝你。」",
 		],
 		btn_upper: {
@@ -837,7 +890,7 @@ var scene = {
 		text_color: "#4d4d4d",
 		story: [
 		"爸爸拍桌：「妳說什麼！」",
-		"媽媽開始質問我：「妳在跟我開玩笑嗎？妳不是都在讀書嗎？",
+		"媽媽開始質問我：「妳在跟我開玩笑嗎？妳不是都在讀書嗎？妳怎麼有時間把自己的肚子搞大？妳是不是騙我們要去圖書館，結果跑去亂搞？」",
 		],
 		bgm: [{url: slap_table}],
 		btn_left: {
@@ -850,10 +903,8 @@ var scene = {
 		background: bg_dad_hit_table,
 		text_color: "#4d4d4d",
 		story: [
-		"妳怎麼有時間把自己的肚子搞大？",
-		"妳是不是騙我們要去圖書館，結果跑去亂搞？」",
 		"「我怎麼會有妳這種女兒，臉都被妳丟光了！」爸爸的臉上充滿失望。",
-		"我的眼淚滴答滴答滴在餐桌上",
+		"我的眼淚滴答滴答滴在餐桌上。",
 		"",
 		"「妳確定懷孕了嗎？」冷靜下來後媽媽問。",
 		"「嗯...」",
@@ -956,7 +1007,7 @@ var scene = {
 			{type: "read", message: "我..我好混亂，不知道該怎麼辦。你呢？你覺得怎麼辦？", timeout: 3},
 			{type: "received", message: "我覺得我們只是個高中生，沒有能力照顧自己，更何況去照顧小孩。", timeout: 4},
 			{type: "received", message: "但是我覺得還是尊重妳的想法，畢竟辛苦的是妳。", timeout: 2},
-			{type: "received", message: "如果妳想生，我會負起責任努力轉錢 ; 如果妳不想生，我也會陪妳。", timeout: 3},
+			{type: "received", message: "如果妳想生，我會負起責任努力賺錢 ; 如果妳不想生，我也會陪妳。", timeout: 3},
 			{type: "read", message: "嗯，謝謝你。", timeout: 2},
 		],
 		btn_upper: {
@@ -990,19 +1041,19 @@ var scene = {
 		background: bg_dinner_texting,
 		line: [
 			{type: "read", message: "我剛剛有努力試探一下了，", timeout: 2},
-			{type: "read", message: "我爸媽很在意我的功課。", timeout: 2},
+			{type: "read", message: "我爸媽很在意我的功課。", timeout: 3},
 			{type: "read", message: "如果我現在跟他們說我懷孕了，", timeout: 3},
 			{type: "read", message: "他們應該會瘋掉。", timeout: 2},
-			{type: "received", message: "所以妳沒說嗎？", timeout: 1},
+			{type: "received", message: "所以妳沒說嗎？", timeout: 2},
 			{type: "read", message: "嗯....我不敢說", timeout: 2},
-			{type: "received", message: "那小孩怎麼辦？", timeout: 3},
-			{type: "received", message: "妳想要生下來還是？", timeout: 3},
-			{type: "read", message: "我..我好混亂", timeout: 2},
-			{type: "read", message: "不知道該怎麼辦。", timeout: 2},
-			{type: "read", message: "你呢？你覺得怎麼辦？", timeout: 1},
+			{type: "received", message: "那小孩怎麼辦？", timeout: 4},
+			{type: "received", message: "妳想要生下來還是？", timeout: 5},
+			{type: "read", message: "我..我好混亂", timeout: 3},
+			{type: "read", message: "不知道該怎麼辦。", timeout: 4},
+			{type: "read", message: "你呢？你覺得怎麼辦？", timeout: 4},
 			{type: "received", message: "我覺得我們只是個高中生", timeout: 3},
-			{type: "received", message: "沒有能力照顧自己，更何況去照顧小孩。", timeout: 2},
-			{type: "received", message: "但是我覺得還是尊重妳的想法，畢竟辛苦的是妳。", timeout: 4},
+			{type: "received", message: "沒有能力照顧自己，更何況去照顧小孩。", timeout: 3},
+			{type: "received", message: "但是我覺得還是尊重妳的想法，畢竟辛苦的是妳。", timeout: 5},
 			{type: "received", message: "如果妳想生，我會負起責任努力賺錢 ; 如果妳不想生，我也會陪妳。", timeout: 4},
 			{type: "read", message: "嗯，謝謝你。", timeout: 2},
 		],
@@ -1098,7 +1149,7 @@ var scene = {
 		background: bg_school_boy_mom,
 		text_color: "#4d4d4d",
 		story: [
-		"「我家小孩絕對不會強暴別人」子曜的媽媽說。",
+		"「我家小孩絕對不會強暴別人。」子曜的媽媽說。",
 		],
 		btn_left: {
 			text: "繼續",
@@ -1158,7 +1209,7 @@ var scene = {
 		background: bg_school_boy_side,
 		text_color: "#4d4d4d",
 		story: [
-		"眼看就要吵起來，子曜爸爸接著說：「對啊，而且子曜昨天也跟我說了他願意責任，這就是做錯事該有表現。」",
+		"眼看就要吵起來，子曜爸爸接著說：「對啊，而且子曜昨天也跟我說了他願意負責任，這就是做錯事該有表現。」",
 		],
 		btn_left: {
 			text: "繼續",
@@ -1194,7 +1245,7 @@ var scene = {
 		background: bg_school_boy_side,
 		text_color: "#4d4d4d",
 		story: [
-		"子曜媽媽生氣地回：「今天坐在這不就是要好好談嗎？你們怎麼講話都這麼酸」",
+		"子曜媽媽生氣地回：「今天坐在這不就是要好好談嗎？你們怎麼講話都這麼酸。」",
 		],
 		btn_left: {
 			text: "繼續",
@@ -1238,7 +1289,7 @@ var scene = {
 		background: bg_school_girl_dad,
 		text_color: "#4d4d4d",
 		story: [
-		"我：「...」",
+		"我：「我...」",
 		"爸爸直接打斷我要說的話：「還能怎麼樣？她現在應該要做的就是好好讀書考好大學。懷孕的是她又不是你兒子，就直接拿掉吧。」",
 		],
 		btn_left: {
@@ -1263,7 +1314,7 @@ var scene = {
 		background: bg_school_girl,
 		text_color: "#4d4d4d",
 		story: [
-		"忍了許久我說：「爸！你怎麼都不聽聽我的意見，就要擅自幫我做決定。你們都不要再吵了！我決定了」",
+		"忍了許久我說：「爸！你怎麼都不聽聽我的意見，就要擅自幫我做決定。你們都不要再吵了！我決定了，」",
 		],
 		btn_upper: {
 			text: "「我就是要把小孩生下來」",
@@ -1430,7 +1481,7 @@ var scene = {
 			"「如果想要進行人工流產的話，是可以用吃藥的方式。",
 			"雖然不用動手術，但是吃完藥後會持續出血大約7-10天。",
 			"因為子宮會劇烈收縮，如果肚子很痛的話可以吃止痛藥緩解。",
-			"在家要多休息，也要按時回診，要確認妊娠組織是否有排乾淨，（以免長時間出血甚至會引發細菌感染）。",
+			"在家要多休息，也要按時回診，要確認妊娠組織是否有排乾淨，以免長時間出血甚至會引發細菌感染。",
 			"若有回診即時處理，對身體並不會有太大的影響。",
 			"好，那芷潔聽完之後，妳做好決定了嗎？」",
 		],
@@ -1492,6 +1543,16 @@ var scene = {
 			"還是上網查一下這藥是什麼，免得自己怎麼死的都不知道。",
 			"原來這藥就是RU486，吃了之後會導致子宮收縮，胚胎隨著子宮內膜自然崩落。",
 			"但是這藥是管制藥品，要在醫生面前吃下去，不知道我自己吞了這藥會不會怎麼樣。",
+		],
+		btn_left: {
+			text: "繼續",
+			scene: 111011,
+		},
+	},
+	111011: {
+		description: "查藥",
+		background: "#396a80",
+		story: [
 			"第二劑藥吃了之後，就會開始出血，有點像月經。",
 			"網路上寫的好像很可怕，肚子會很痛。",
 			"但，我再不吃藥就得動手術了，我不敢跟爸媽說，也沒有能力照顧孩子，",
@@ -1637,7 +1698,7 @@ var scene = {
 	},
 	11106: {
 		description: "不吞2",
-		background: bg_preg_walk_on_street,
+		background: bg_ask,
 		story_date: "2018/11/7",
 		text_color: "#4d4d4d",
 		page_turn: true,
@@ -1666,7 +1727,7 @@ var scene = {
 		],
 		btn_left: {
 			text: "繼續",
-			scene: 111161,
+			scene: 111091,
 		},
 	},
 	11108: {
@@ -1692,7 +1753,8 @@ var scene = {
 		page_turn: true,
 		story: [
 			"我的肚子隆起已非常明顯，還好現在寒流，穿很多別人也看不出來。",
-			"算一算現在也有五個月了吧，自從確認懷孕到現在，我再也沒回診。",
+			"算一算現在也有五個月了吧",
+			"自從確認懷孕到現在，我再也沒回診。",
 			"絕對不能讓父母、老師、同學知道，我一直隱藏的很好。",
 		],
 		btn_left: {
@@ -1884,7 +1946,7 @@ var scene = {
 			"曾經的諾言無法兌現，芷潔常一個人哭泣，猶豫是否要和子曜走一輩子。",
 			"在這過程中又發生了許多爭吵，小孩還沒生下來兩人就分手了。",
 			"子曜如釋重負，丟下母子倆，消失的無影無蹤。",
-			"芷潔還是決定生下寶小孩，她相信只要她努力，一定也可以給小孩一個幸福的家。",
+			"芷潔還是決定生下小孩，她相信只要她努力，一定也可以給小孩一個幸福的家。",
 			"每天從早到晚兼了好幾份工作，只為了賺更多錢給小孩更好的生活。",
 			"有一天下午難得有空，芷潔來到保母家想看看小孩在做什麼？",
 			"是開心地玩玩具？還是正睡得香甜？",
@@ -2005,10 +2067,8 @@ var scene = {
 		story: [
 			"芷潔在醫院生下小孩後，一夕間老師、同學、家長都知道了。",
 			"子曜瞬間成為眾矢之的，大家都覺得他是一個只會玩卻不負責任的人。",
-			"子曜因為芷潔的欺騙大吵了一架，從此人間蒸發了，",
-			"有人說他轉學有人說他跑了。",
-			"芷潔肯定被父母罵得很慘，政府也將這案子交給社福機構，",
-			"協助芷潔未成年生下小孩後，所需要的協助與關懷。",
+			"子曜因為芷潔的欺騙大吵了一架，從此人間蒸發了，有人說他轉學有人說他跑了。",
+			"芷潔肯定被父母罵得很慘，政府也將這案子交給社福機構，協助芷潔未成年生下小孩後，所需要的協助與關懷。",
 			"芷潔毅然決然休學，打了好幾份工，他相信孩子沒有爸爸也能幸福快樂地成長。",
 			"還好芷潔後來遇到小翰，一個真心疼她愛她的男人，願意娶她並把小孩視為己出。",
 			"兩人共組家庭後，沒多久芷潔也和小翰生了一個自己的小孩。",
