@@ -8,8 +8,8 @@ The following instructions describe the prerequisites and implementation methods
 
 ### Prerequisites
 
-- Images
-- Audios
+- Background Images
+- Audios Effects
 - Story 
 
 ### Installing
