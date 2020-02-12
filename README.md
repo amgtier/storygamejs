@@ -25,16 +25,16 @@ git clone https://github.com/amgtier/storygamejs
 
 ```
 .
+|---src/               <-- source code
+|  |---js/
+|  └---css/
+|
 |---demo/              <-- a demo site
 |  |---js/
 |  |---css/
 |  |---img/
 |  |---audio/
 |  └---index-demo.html <-- the game starts here
-|
-|---src/               <-- source code
-|  |---js/
-|  └---css/
 |
 |---betweentwolines/   <-- a demo game based on StorygameJS (In Traditional Chinese)
 |
