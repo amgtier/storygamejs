@@ -27,24 +27,34 @@ git clone https://github.com/amgtier/storygamejs
 .
 |---src/               <-- source code
 |  |---js/
+|  |  └ ...
 |  └---css/
+|  |  └ ...
 |
 |---demo/              <-- a demo site
 |  |---js/
+|  |  | ...
+|  |  └---scene.js     <-- refer to this file for instructions.
 |  |---css/
+|  |  └ ...
 |  |---img/
+|  |  └ ...
 |  |---audio/
+|  |  └ ...
 |  └---index-demo.html <-- the game starts here
 |
 |---betweentwolines/   <-- a demo game based on StorygameJS (In Traditional Chinese)
+|  └ ...
 |
 └---README.md
 ```
 
 ### Demo
 
-Please refers to index.html at demo/ for the pages and functionality available.
+Please refers to ```index.html``` and ```js/scene.js``` at ```demo/``` for the pages and functionality available.
 [https://amgtier.github.io/storygamejs/demo/](https://amgtier.github.io/storygamejs/demo/)
+- ```index.html``` works as an entry point of this project.
+- ```js/scene.js``` is all you need to know to set up your own game.
 
 ### Demo Game
 
