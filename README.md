@@ -44,18 +44,12 @@ git clone https://github.com/amgtier/storygamejs
 ### Demo
 
 Please refers to index.html at demo/ for the pages and functionality available.
-
-```
 [https://amgtier.github.io/storygamejs/demo/](https://amgtier.github.io/storygamejs/demo/)
-```
 
 ### Demo Game
 
 Please refers to index.html at betweentwolines/ for a production game that uses StorygameJS.
-
-```
 [https://amgtier.github.io/storygamejs/betweentwolines/](https://amgtier.github.io/storygamejs/betweentwolines/)
-```
 
 ## License
 
@@ -63,6 +57,6 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-* This idea and deisgn is originally devised by the team of [betweentwolines](https://www.betweentwolines.org/aboutus.html).
+* This idea and deisgn is originally devised by [the team of betweentwolines](https://www.betweentwolines.org/aboutus.html).
 
 _To Ann..._
