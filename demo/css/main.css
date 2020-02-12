@@ -27,6 +27,11 @@ a:hover{
 	color: #254b5b;
 	text-decoration: none;
 }
+
+p{
+	text-align: justify;
+}
+
 .btn{
 	border-radius: 0px;
 	color: #fff;

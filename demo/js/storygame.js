@@ -254,8 +254,8 @@ class StoryGame {
 		else if (s.text_color != undefined) {
 			story.css({"color": s.text_color});
 		}
-		if (s.story_date != undefined){
-			story.append($("<p>", {class: "story story-date", text: s.story_date}));
+		if (s.story_header != undefined){
+			story.append($("<p>", {class: "story story-date", text: s.story_header}));
 		}
 		let start = this.story_section * MAX_STORY_PARAGRAPH;
 		let end = this.story_section * MAX_STORY_PARAGRAPH + (MAX_STORY_PARAGRAPH);
@@ -282,7 +282,7 @@ class StoryGame {
 			if (s.image_story == undefined){
 				this.render_buttons({
 					text_color: s.text_color,
-					btn_left:{text: "繼續", scene: this.curr_scene}
+					btn_left:{text: _continue, scene: this.curr_scene}
 				})
 			}
 		}
@@ -311,7 +311,7 @@ class StoryGame {
 					$("audio#line-read")[0].currentTime = 0;
 					$("audio#line-read")[0].play();
 					row = $("<p>", {class: "line line-right text-right"});
-					row.append($("<span>", {class: "line-read", text: "已讀"}));
+					row.append($("<span>", {class: "line-read", text: _read}));
 					if (j.message != undefined){
 						row.append($("<span>", {class: "line-msg", text: j.message}));
 					}
@@ -336,7 +336,7 @@ class StoryGame {
 					$("audio#line-read")[0].play();
 					$.each(line.find("p.line-right"), function(k, v){
 						if ($(v).find("span.line-read").length == 0){
-							$(v).prepend($("<span>", {class: "line-read", text: "已讀"}));
+							$(v).prepend($("<span>", {class: "line-read", text: _read}));
 						}
 					});
 				}
@@ -388,24 +388,24 @@ class StoryGame {
 						$("audio#line-call")[0].play();
 					}, 3000)
 					row = $("<p>", {class: "line line-right text-right"});
-					row.append($("<span>", {class: "line-msg line-call", text: "撥打中..."}));
+					row.append($("<span>", {class: "line-msg line-call", text: _dialing}));
 					line.append(row);
 				}
 				else if (j.type == "outgoing cancelled") {
 					row = $("<p>", {class: "line line-right text-right"});
-					row.append($("<span>", {class: "line-msg line-call", text: "取消通話"}));
+					row.append($("<span>", {class: "line-msg line-call", text: _dialing_calcelled}));
 					line.append(row);
 					$("audio#line-call-end")[0].currentTime = 0;
 					$("audio#line-call-end")[0].play();
 				}
 				else if (j.type == "incoming dialing") {
 					row = $("<p>", {class: "line line-left text-left"});
-					row.append($("<span>", {class: "line-msg line-call", text: "撥打中..."}));
+					row.append($("<span>", {class: "line-msg line-call", text: _dialing}));
 					line.append(row);
 				}
 				else if (j.type == "incoming cancelled") {
 					row = $("<p>", {class: "line line-left text-left"});
-					row.append($("<span>", {class: "line-msg line-call", text: "取消通話"}));
+					row.append($("<span>", {class: "line-msg line-call", text: _dialing_calcelled}));
 					line.append(row);
 					$("audio#line-call-end")[0].currentTime = 0;
 					$("audio#line-call-end")[0].play();
@@ -615,14 +615,31 @@ class StoryGame {
 		var btns = $("<div>", {class: "btn-wrapper"});
 		var self = this;
 		$.each(s.img_btn, function(i, j){
-			let k = $("<img>", {
+			let img = $("<img>", {
 				src: j[0], 
 				class: "img-btn"
 			});
-			k.on("click", function(){
+			img.on("click", function(){
 				self.render(j[1])
 			})
-			btns.append(k);
+			if (j.length > 2){
+				if (j[2].left != undefined) {
+					img.css("left", j[2].left + "px");
+				}
+				if (j[2].up != undefined) {
+					img.css("top", j[2].up + "px");
+				}
+				if (j[2].height != undefined) {
+					img.css("height", j[2].height + "px");
+				}
+				if (j[2].width != undefined) {
+					img.css("width", j[2].width + "px");
+				}
+				if (j[2].rotate != undefined) {
+					img.css("transform", "rotate("+ j[2].rotate + "deg)");
+				}
+			}
+			btns.append(img);
 		})
 		self.screen.append(btns);
 
@@ -642,6 +659,15 @@ class StoryGame {
 				}
 				if (this.up != undefined) {
 					img.css("top", this.up + "px");
+				}
+				if (this.height != undefined) {
+					img.css("height", this.height + "px");
+				}
+				if (this.width != undefined) {
+					img.css("width", this.width + "px");
+				}
+				if (this.rotate != undefined) {
+					img.css("transform", "rotate("+ this.rotate + "deg)");
 				}
 			}
 			else{
